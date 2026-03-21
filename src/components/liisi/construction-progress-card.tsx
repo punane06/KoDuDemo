@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import type { ConstructionStage } from "@/lib/mockData";
+import { liisiText, liisiColors, liisiState } from "@/components/liisi/liisi-design-system";
 
 // SVG arc math
 const R = 46;
@@ -25,7 +26,7 @@ export function ConstructionProgressCard({ stages, progressPercent, estimatedCom
     <Card>
       <CardContent className="px-4 pt-4 pb-5">
         {/* Title */}
-        <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground mb-4">
+        <p className={`text-center ${liisiText.micro} mb-4`}>
           ✦ Construction Progress ✦
         </p>
 
@@ -88,7 +89,7 @@ export function ConstructionProgressCard({ stages, progressPercent, estimatedCom
               cy={CY}
               r={R}
               fill="none"
-              stroke="#CAD4DA"
+              stroke={liisiState.progressArcBackground}
               strokeWidth="8"
               strokeLinecap="round"
               strokeDasharray={`${ARC_LEN} ${GAP}`}
@@ -100,7 +101,7 @@ export function ConstructionProgressCard({ stages, progressPercent, estimatedCom
               cy={CY}
               r={R}
               fill="none"
-              stroke="#FACC58"
+              stroke={liisiState.progressArcFill}
               strokeWidth="8"
               strokeLinecap="round"
               strokeDasharray={`${progressLen} ${progressGap}`}
@@ -115,7 +116,7 @@ export function ConstructionProgressCard({ stages, progressPercent, estimatedCom
               style={{
                 fontSize: 22,
                 fontWeight: 700,
-                fill: "#223F43",
+                fill: liisiColors.primary,
                 fontFamily: "'Bell MT', Georgia, serif",
               }}
             >
@@ -126,7 +127,7 @@ export function ConstructionProgressCard({ stages, progressPercent, estimatedCom
               x={CX}
               y={CY + 16}
               textAnchor="middle"
-              style={{ fontSize: 10, fill: "#556063" }}
+              style={{ fontSize: 10, fill: liisiColors.textTertiary }}
             >
               Complete
             </text>

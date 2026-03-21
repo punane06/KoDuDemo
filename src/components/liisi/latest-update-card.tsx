@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
+import { liisiText, liisiControls } from "@/components/liisi/liisi-design-system";
 
 interface Props {
   date: string;
@@ -22,11 +23,10 @@ export function LatestUpdateCard({
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <h2 className="text-sm font-semibold">Latest update</h2>
+        <h2 className={liisiText.sectionHeading}>Latest update</h2>
         <Link
           href={viewAllHref}
-          className="text-xs font-medium"
-          style={{ color: "#FACC58" }}
+          className={liisiControls.linkSmall}
         >
           View all ({totalCount})
         </Link>
@@ -43,10 +43,10 @@ export function LatestUpdateCard({
             />
           </div>
           <CardContent className="pt-3 pb-4">
-            <p className="mb-1 text-xs font-medium" style={{ color: "#FACC58" }}>
+            <p className={`mb-1 ${liisiControls.linkSmall}`}>
               {date} &rsaquo; {category}
             </p>
-            <p className="text-sm text-foreground">{text}</p>
+            <p className={liisiText.body}>{text}</p>
           </CardContent>
         </Card>
       </Link>
