@@ -37,6 +37,7 @@ export default function LiisiPage() {
           imageUrl={liisiLatestUpdate.imageUrl}
           text={liisiLatestUpdate.text}
           totalCount={liisiLatestUpdate.totalCount}
+          viewAllHref="/liisi/gallery"
         />
 
         {/* ── Quick Access ───────────────────────────── */}

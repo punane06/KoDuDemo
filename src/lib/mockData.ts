@@ -39,6 +39,12 @@ export type GalleryPhoto = {
   url: string;
 };
 
+export type ProgressGalleryPhoto = {
+  id: string;
+  title: string;
+  url: string;
+};
+
 export type DeveloperProject = {
   id: string;
   name: string;
@@ -140,6 +146,29 @@ export const liisiLatestUpdate = {
   text: "We have completed painting your feature wall in the living room. The soft beige tone creates a warm and elegant atmosphere.",
   totalCount: 4,
 };
+
+export const liisiProgressGallery: ProgressGalleryPhoto[] = [
+  {
+    id: "progress-001",
+    title: "Exterior overview",
+    url: "https://picsum.photos/900/1400?random=301",
+  },
+  {
+    id: "progress-002",
+    title: "Interior corridor",
+    url: "https://picsum.photos/900/1400?random=302",
+  },
+  {
+    id: "progress-003",
+    title: "Worksite update",
+    url: "https://picsum.photos/900/1400?random=303",
+  },
+  {
+    id: "progress-004",
+    title: "Landscape progress",
+    url: "https://picsum.photos/900/1400?random=304",
+  },
+];
 
 export const recentUpdates: ConstructionUpdate[] = [
   {

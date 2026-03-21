@@ -17,7 +17,7 @@ export function LatestUpdateCard({
   imageUrl,
   text,
   totalCount,
-  viewAllHref = "#",
+  viewAllHref = "/liisi/gallery",
 }: Props) {
   return (
     <div>
@@ -31,23 +31,25 @@ export function LatestUpdateCard({
           View all ({totalCount})
         </Link>
       </div>
-      <Card className="overflow-hidden">
-        <div className="relative h-36 w-full">
-          <Image
-            src={imageUrl}
-            alt="Latest construction update"
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, 400px"
-          />
-        </div>
-        <CardContent className="pt-3 pb-4">
-          <p className="mb-1 text-xs font-medium" style={{ color: "#FACC58" }}>
-            {date} &rsaquo; {category}
-          </p>
-          <p className="text-sm text-foreground">{text}</p>
-        </CardContent>
-      </Card>
+      <Link href={viewAllHref} className="block">
+        <Card className="overflow-hidden transition hover:shadow-md">
+          <div className="relative h-36 w-full">
+            <Image
+              src={imageUrl}
+              alt="Latest construction update"
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 100vw, 400px"
+            />
+          </div>
+          <CardContent className="pt-3 pb-4">
+            <p className="mb-1 text-xs font-medium" style={{ color: "#FACC58" }}>
+              {date} &rsaquo; {category}
+            </p>
+            <p className="text-sm text-foreground">{text}</p>
+          </CardContent>
+        </Card>
+      </Link>
     </div>
   );
 }
