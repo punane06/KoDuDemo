@@ -39,6 +39,71 @@ export type GalleryPhoto = {
   url: string;
 };
 
+export type DeveloperProject = {
+  id: string;
+  name: string;
+  unitCount: number;
+  currentStage: string;
+  progressPercent: number;
+  pendingDesigns: number;
+  clientUpdates: number;
+  lastUpdated: string;
+  estimatedCompletion: string;
+};
+
+export type ConstructionStage = {
+  id: string;
+  label: string;
+  done: boolean;
+  current?: boolean;
+};
+
+export type ProjectUnit = {
+  id: string;
+  name: string;
+  status: string;
+  designStage: string;
+  packageName: string;
+  progressPercent?: number;
+};
+
+export type DeveloperProjectDetail = {
+  projectId: string;
+  stageSummary: string;
+  nextStage: string;
+  stageDate: string;
+  constructionStages: ConstructionStage[];
+  photoUrls: string[];
+  units: ProjectUnit[];
+};
+
+export type UnitMessage = {
+  id: string;
+  author: string;
+  text: string;
+  time: string;
+};
+
+export type UnitDetail = {
+  unitId: string;
+  clientName: string;
+  ownerName: string;
+  ownerEmail: string;
+  ownerPhone: string;
+  recentMessages: UnitMessage[];
+  style: string;
+  flooring: string;
+  bathroom: string;
+  kitchen: string;
+  files: Array<{
+    id: string;
+    title: string;
+    date: string;
+  }>;
+  quickUploads: string[];
+  notes: string;
+};
+
 export const apartment: Apartment = {
   id: "apt-001",
   title: "Liisi New Home",
@@ -178,3 +243,179 @@ export const activityFeed = [
     type: "budget",
   },
 ] as const;
+
+export const developerProjects: DeveloperProject[] = [
+  {
+    id: "proj-iseara-lutsu",
+    name: "Iseara Lutsu",
+    unitCount: 24,
+    currentStage: "Interior Works",
+    progressPercent: 58,
+    pendingDesigns: 5,
+    clientUpdates: 3,
+    lastUpdated: "Yesterday",
+    estimatedCompletion: "Aug 15, 2026",
+  },
+  {
+    id: "proj-tammeka",
+    name: "Tammekalda Residence",
+    unitCount: 34,
+    currentStage: "Finishing",
+    progressPercent: 72,
+    pendingDesigns: 3,
+    clientUpdates: 12,
+    lastUpdated: "2d ago",
+    estimatedCompletion: "May 30, 2026",
+  },
+  {
+    id: "proj-river-park",
+    name: "River Park Homes",
+    unitCount: 18,
+    currentStage: "Exterior Works",
+    progressPercent: 35,
+    pendingDesigns: 6,
+    clientUpdates: 2,
+    lastUpdated: "Today",
+    estimatedCompletion: "Oct 20, 2026",
+  },
+];
+
+export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
+  "proj-iseara-lutsu": {
+    projectId: "proj-iseara-lutsu",
+    stageSummary: "Construction Control",
+    nextStage: "Finishing",
+    stageDate: "Aug 15, 2026",
+    constructionStages: [
+      { id: "stage-1", label: "Foundation", done: true },
+      { id: "stage-2", label: "Frame", done: true },
+      { id: "stage-3", label: "Exterior", done: true },
+      { id: "stage-4", label: "Interior", done: false, current: true },
+      { id: "stage-5", label: "Finishing", done: false },
+      { id: "stage-6", label: "Complete", done: false },
+    ],
+    photoUrls: [
+      "https://picsum.photos/320/220?random=221",
+      "https://picsum.photos/320/220?random=222",
+    ],
+    units: [
+      { id: "unit-2-9", name: "Iseara Lutsu 2-9", status: "Sold", designStage: "Design", packageName: "Dark and Premium", progressPercent: 58 },
+      { id: "unit-2-12", name: "Iseara Lutsu 2-12", status: "Sold", designStage: "Design", packageName: "Light and Modern" },
+      { id: "unit-3-5", name: "Iseara Lutsu 3-5", status: "Reserved", designStage: "Design", packageName: "Custom", progressPercent: 75 },
+      { id: "unit-4-8", name: "Iseara Lutsu 4-8", status: "Sold", designStage: "Design", packageName: "Custom" },
+      { id: "unit-1-3", name: "Iseara Lutsu 1-3", status: "Available", designStage: "Design", packageName: "Not Selected" },
+      { id: "unit-1-5", name: "Iseara Lutsu 1-5", status: "Sold", designStage: "Design", packageName: "Classic and Neutral" },
+    ],
+  },
+  "proj-tammeka": {
+    projectId: "proj-tammeka",
+    stageSummary: "Construction Control",
+    nextStage: "Complete",
+    stageDate: "May 30, 2026",
+    constructionStages: [
+      { id: "stage-1", label: "Foundation", done: true },
+      { id: "stage-2", label: "Frame", done: true },
+      { id: "stage-3", label: "Exterior", done: true },
+      { id: "stage-4", label: "Interior", done: true },
+      { id: "stage-5", label: "Finishing", done: false, current: true },
+      { id: "stage-6", label: "Complete", done: false },
+    ],
+    photoUrls: [
+      "https://picsum.photos/320/220?random=223",
+      "https://picsum.photos/320/220?random=224",
+    ],
+    units: [
+      { id: "unit-t-1", name: "Tammekalda Residence 1-4", status: "Sold", designStage: "Finishing", packageName: "Balanced" },
+      { id: "unit-t-2", name: "Tammekalda Residence 2-1", status: "Sold", designStage: "Finishing", packageName: "Signature" },
+    ],
+  },
+  "proj-river-park": {
+    projectId: "proj-river-park",
+    stageSummary: "Construction Control",
+    nextStage: "Interior",
+    stageDate: "Oct 20, 2026",
+    constructionStages: [
+      { id: "stage-1", label: "Foundation", done: true },
+      { id: "stage-2", label: "Frame", done: true },
+      { id: "stage-3", label: "Exterior", done: false, current: true },
+      { id: "stage-4", label: "Interior", done: false },
+      { id: "stage-5", label: "Finishing", done: false },
+      { id: "stage-6", label: "Complete", done: false },
+    ],
+    photoUrls: [
+      "https://picsum.photos/320/220?random=225",
+      "https://picsum.photos/320/220?random=226",
+    ],
+    units: [
+      { id: "unit-r-1", name: "River Park Homes 1-1", status: "Available", designStage: "Planning", packageName: "Not Selected" },
+      { id: "unit-r-2", name: "River Park Homes 2-3", status: "Reserved", designStage: "Planning", packageName: "Essential" },
+    ],
+  },
+};
+
+export const unitDetails: Record<string, UnitDetail> = {
+  "unit-2-9": {
+    unitId: "unit-2-9",
+    clientName: "Liisi",
+    ownerName: "Mari Tamm",
+    ownerEmail: "mari.tamm@example.com",
+    ownerPhone: "+372 512 3457",
+    recentMessages: [
+      {
+        id: "msg-1",
+        author: "Mari Tamm",
+        text: "When will the kitchen installation begin? I'm excited to see the progress.",
+        time: "2h ago",
+      },
+      {
+        id: "msg-2",
+        author: "System",
+        text: "2 unread messages",
+        time: "Now",
+      },
+    ],
+    style: "Dark and Premium",
+    flooring: "Dark Oak",
+    bathroom: "Marble Black",
+    kitchen: "Dark Gray & Black",
+    files: [
+      { id: "file-1", title: "Floor Plan.pdf", date: "11.15.2024" },
+      { id: "file-2", title: "Electrical Plan.pdf", date: "12.20.2024" },
+      { id: "file-3", title: "Plumbing Plan.pdf", date: "12.20.2024" },
+    ],
+    quickUploads: ["Floor Plan", "Electrical", "Plumbing"],
+    notes: "Add notes about this unit internally. Client prefers darker finishes and wants updates before flooring is ordered.",
+  },
+  "unit-2-12": {
+    unitId: "unit-2-12",
+    clientName: "Karl",
+    ownerName: "Mari Tamm",
+    ownerEmail: "mari.tamm@example.com",
+    ownerPhone: "+372 512 3457",
+    recentMessages: [],
+    style: "Light and Modern",
+    flooring: "Natural Oak",
+    bathroom: "Soft Beige",
+    kitchen: "Warm White",
+    files: [],
+    quickUploads: ["Floor Plan", "Electrical", "Plumbing"],
+    notes: "Awaiting final client selection.",
+  },
+};
+
+export function getDeveloperProjectById(projectId: string) {
+  return developerProjects.find((project) => project.id === projectId);
+}
+
+export function getDeveloperProjectDetailById(projectId: string) {
+  return developerProjectDetails[projectId];
+}
+
+export function getProjectUnit(projectId: string, unitId: string) {
+  const projectDetail = getDeveloperProjectDetailById(projectId);
+  return projectDetail?.units.find((unit) => unit.id === unitId);
+}
+
+export function getUnitDetailById(unitId: string) {
+  return unitDetails[unitId];
+}
