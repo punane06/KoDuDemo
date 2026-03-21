@@ -24,9 +24,13 @@ export function LiisiHeader({
 }: LiisiHeaderProps) {
   const isHome = variant === "home";
   const hasLeadingBack = !isHome && Boolean(backHref);
+  const headerClassName = liisiSurface.appHeader;
+  const backClassName = `${liisiControls.backButton} text-[#FACC58]`;
+  const titleClassName = liisiText.appHeaderTitleCompact;
+  const subtitleClassName = liisiText.appHeaderSubtitle;
 
   return (
-    <header className={liisiSurface.appHeader}>
+    <header className={headerClassName}>
       {isHome ? (
         <div className="mx-auto flex w-full max-w-sm items-center justify-between gap-3 px-4 py-6 sm:px-6">
           <div className="min-w-0">
@@ -44,11 +48,11 @@ export function LiisiHeader({
           <div className="flex items-start justify-between gap-3">
             <div className="flex min-w-0 items-center gap-2">
               {hasLeadingBack ? (
-                <Link href={backHref!} aria-label="Back to home" className={`${liisiControls.backButton} text-[#FACC58]`}>
+                <Link href={backHref!} aria-label="Back to home" className={backClassName}>
                   <ArrowLeft size={18} />
                 </Link>
               ) : null}
-              <h1 className={liisiText.appHeaderTitleCompact}>{title}</h1>
+              <h1 className={titleClassName}>{title}</h1>
             </div>
 
             <div className="shrink-0">
@@ -63,7 +67,7 @@ export function LiisiHeader({
           </div>
 
           {subtitle ? (
-            <p className={`${hasLeadingBack ? "pl-8" : "pl-0"} ${liisiText.appHeaderSubtitle}`}>{subtitle}</p>
+            <p className={`${hasLeadingBack ? "pl-8" : "pl-0"} ${subtitleClassName}`}>{subtitle}</p>
           ) : null}
         </div>
       )}
