@@ -11,6 +11,7 @@ import {
   getDeveloperProjectById,
   getDeveloperProjectDetailById,
 } from "@/lib/mockData";
+import { mapUnitStatusToBadgeVariant } from "@/lib/presentation/status";
 import { cn } from "@/lib/utils";
 
 type ProjectDetailPageProps = {
@@ -23,17 +24,6 @@ export function generateStaticParams() {
   return developerProjects.map((project) => ({
     projectId: project.id,
   }));
-}
-
-function statusVariant(status: string) {
-  switch (status) {
-    case "Sold":
-      return "secondary" as const;
-    case "Reserved":
-      return "outline" as const;
-    default:
-      return "ghost" as const;
-  }
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
@@ -142,7 +132,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant={statusVariant(unit.status)}>{unit.status}</Badge>
+              <Badge variant={mapUnitStatusToBadgeVariant(unit.status)}>{unit.status}</Badge>
               <Badge variant="outline">{unit.designStage}</Badge>
               <Badge variant="secondary">{unit.packageName}</Badge>
             </div>

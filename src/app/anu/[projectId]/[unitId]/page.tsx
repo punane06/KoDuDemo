@@ -12,6 +12,7 @@ import {
   getProjectUnit,
   getUnitDetailOrFallback,
 } from "@/lib/mockData";
+import { mapUnitStatusToBadgeVariant } from "@/lib/presentation/status";
 
 type UnitDetailPageProps = {
   params: Promise<{
@@ -32,17 +33,6 @@ export function generateStaticParams() {
   });
 }
 
-function statusVariant(status: string) {
-  switch (status) {
-    case "Sold":
-      return "secondary" as const;
-    case "Reserved":
-      return "outline" as const;
-    default:
-      return "ghost" as const;
-  }
-}
-
 export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
   const { projectId, unitId } = await params;
   const project = getDeveloperProjectById(projectId);
@@ -61,7 +51,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
       description="Unit management view for client communication, interior selections, and file handling."
       actions={
         <div className="flex items-center gap-2">
-          <Badge variant={statusVariant(unit.status)}>{unit.status}</Badge>
+          <Badge variant={mapUnitStatusToBadgeVariant(unit.status)}>{unit.status}</Badge>
           <Button variant="outline" size="sm">Send Message</Button>
         </div>
       }
