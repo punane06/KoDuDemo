@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 import type { ProgressGalleryPhoto } from "@/lib/mockData";
 
@@ -17,12 +17,16 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
   const activePhoto = photos[activeIndex];
   const total = photos.length;
 
+  function showPreviousPhoto() {
+    setActiveIndex((current) => (current - 1 + total) % total);
+  }
+
   function showNextPhoto() {
     setActiveIndex((current) => (current + 1) % total);
   }
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-sm flex-col bg-black text-white">
+    <main className="flex min-h-screen w-screen flex-col bg-black text-white">
       <header className="flex items-start justify-between px-6 pt-12 pb-6">
         <div>
           <h1 className="text-2xl font-medium">Progress Gallery</h1>
@@ -53,9 +57,18 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
 
         <button
           type="button"
+          onClick={showPreviousPhoto}
+          aria-label="Previous photo"
+          className="absolute left-6 top-1/2 z-10 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white/75 text-black shadow-lg backdrop-blur-sm transition hover:bg-white/90"
+        >
+          <ChevronLeft size={28} />
+        </button>
+
+        <button
+          type="button"
           onClick={showNextPhoto}
           aria-label="Next photo"
-          className="absolute right-6 top-1/2 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black shadow-lg transition hover:scale-[1.02]"
+          className="absolute right-6 top-1/2 z-10 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white/75 text-black shadow-lg backdrop-blur-sm transition hover:bg-white/90"
         >
           <ChevronRight size={28} />
         </button>
@@ -72,7 +85,7 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
                 type="button"
                 onClick={() => setActiveIndex(index)}
                 className={[
-                  "relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border transition",
+                  "relative h-16 w-16 shrink-0 cursor-pointer overflow-hidden rounded-2xl border transition",
                   isActive
                     ? "border-[#FACC58] ring-2 ring-[#FACC58]/30"
                     : "border-white/15 opacity-80 hover:opacity-100",
