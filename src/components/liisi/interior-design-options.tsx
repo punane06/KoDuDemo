@@ -59,11 +59,11 @@ export function InteriorDesignOptions({ packages }: InteriorDesignOptionsProps) 
                 <ArrowLeft size={18} />
               </Link>
               <div>
-                <h1 className="text-[35px] font-medium text-[#2e2e2e]">Interior Design</h1>
-                <p className="text-base text-[#8a8a8a]">Choose your preferred package</p>
+                <h1 className="text-[33px] font-medium leading-[1.05] text-[#2e2e2e]">Interior Design</h1>
+                <p className="text-[14px] text-[#8a8a8a]">Choose your preferred package</p>
               </div>
             </div>
-            <span className="rounded-full bg-[#ececec] px-3 py-1 text-[13px] text-[#8c8c8c]">
+            <span className="rounded-full bg-[#ececec] px-3 py-1 text-[12px] text-[#8c8c8c]">
               Not Selected
             </span>
           </div>
@@ -71,7 +71,7 @@ export function InteriorDesignOptions({ packages }: InteriorDesignOptionsProps) 
       </header>
 
       <section className="mx-auto w-full max-w-sm space-y-4 px-5 pt-4">
-        <div className="rounded-2xl border border-[#d7d7d7] bg-white px-4 py-3 text-[#7d7d7d] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+        <div className="rounded-2xl border border-[#d7d7d7] bg-white px-4 py-3 text-[14px] text-[#7d7d7d] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
           Select one of our curated packages or request a custom design tailored to your preferences.
         </div>
 

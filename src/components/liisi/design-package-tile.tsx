@@ -26,14 +26,14 @@ export function DesignPackageTile({
       </div>
 
       <div className="space-y-1 px-3 py-2.5">
-        <p className="text-[13px] text-[#858585]">{packageLabel}</p>
-        <h3 className="text-[30px] font-medium leading-tight text-[#2b2b2b]">{title}</h3>
+        <p className="text-[12px] text-[#858585]">{packageLabel}</p>
+        <h3 className="text-[18px] font-medium leading-[1.15] text-[#2b2b2b]">{title}</h3>
         <div className="space-y-1 pt-1">
-          <p className="inline-block rounded-md bg-[#f2f0ed] px-2 py-0.5 text-xs text-[#878787]">
+          <p className="inline-block rounded-md bg-[#f2f0ed] px-2 py-0.5 text-[11px] text-[#878787]">
             {tags[0]}
           </p>
           <p className="block" />
-          <p className="inline-block rounded-md bg-[#f2f0ed] px-2 py-0.5 text-xs text-[#878787]">
+          <p className="inline-block rounded-md bg-[#f2f0ed] px-2 py-0.5 text-[11px] text-[#878787]">
             {tags[1]}
           </p>
         </div>
