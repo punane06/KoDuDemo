@@ -59,11 +59,11 @@ export function InteriorDesignOptions({ packages }: InteriorDesignOptionsProps) 
                 <ArrowLeft size={18} />
               </Link>
               <div>
-                <h1 className="text-[33px] font-medium leading-[1.05] text-[#2e2e2e]">Interior Design</h1>
-                <p className="text-[14px] text-[#8a8a8a]">Choose your preferred package</p>
+                <h1 className="text-[18px] font-normal leading-[1.15] text-[#2e2e2e]">Interior Design</h1>
+                <p className="text-[12px] font-light text-[#6b6b6b]">Choose your preferred package</p>
               </div>
             </div>
-            <span className="rounded-full bg-[#ececec] px-3 py-1 text-[12px] text-[#8c8c8c]">
+            <span className="rounded-full bg-[#f5f3f0] px-3 py-1 text-[12px] font-light text-[#6b6b6b]">
               Not Selected
             </span>
           </div>
