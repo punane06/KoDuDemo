@@ -12,6 +12,7 @@ import {
   getDeveloperProjectDetailById,
   recentUpdates,
 } from "@/lib/mockData";
+import { getProjectUpdateImageSrc } from "@/lib/presentation/anu";
 import { cn } from "@/lib/utils";
 
 type ProjectDetailPageProps = {
@@ -109,7 +110,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             {recentUpdates.map((update, index) => (
               <article key={update.id} className={`grid grid-cols-[44px_1fr_auto] items-start gap-2 ${anuSurface.panelInset} p-1.5`}>
                 <Image
-                  src={detail.photoUrls.length > 0 ? detail.photoUrls[index % detail.photoUrls.length] : fallbackUpdateImageUrl}
+                  src={getProjectUpdateImageSrc(detail.photoUrls, index, fallbackUpdateImageUrl)}
                   alt={update.title}
                   width={44}
                   height={34}
