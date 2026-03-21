@@ -1,73 +1,101 @@
 import Link from "next/link";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
-import { Card } from "@/components/ui/card";
 import type { DesignPackage } from "@/lib/mockData";
+import { DesignPackageTile } from "@/components/liisi/design-package-tile";
+import { CustomSelectionCard } from "@/components/liisi/custom-selection-card";
 
 interface InteriorDesignOptionsProps {
   packages: DesignPackage[];
 }
 
-function euro(value: number) {
-  return new Intl.NumberFormat("en-EE", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
+const packageVisuals: Record<
+  string,
+  {
+    label: string;
+    title: string;
+    imageUrl: string;
+    tags: [string, string];
+  }
+> = {
+  "pkg-essential": {
+    label: "Package A",
+    title: "Light & Modern",
+    imageUrl: "https://picsum.photos/600/420?random=451",
+    tags: ["Oak flooring", "White quartz"],
+  },
+  "pkg-balanced": {
+    label: "Package B",
+    title: "Dark & Premium",
+    imageUrl: "https://picsum.photos/600/420?random=452",
+    tags: ["Walnut flooring", "Black granite"],
+  },
+  "pkg-signature": {
+    label: "Package C",
+    title: "Classic & Neutral",
+    imageUrl: "https://picsum.photos/600/420?random=453",
+    tags: ["Ash flooring", "Beige marble"],
+  },
+  "pkg-bespoke": {
+    label: "Package D",
+    title: "Nordic Warmth",
+    imageUrl: "https://picsum.photos/600/420?random=454",
+    tags: ["Pine flooring", "Warm stone"],
+  },
+};
 
 export function InteriorDesignOptions({ packages }: InteriorDesignOptionsProps) {
   return (
-    <main className="mx-auto w-full max-w-sm flex-1 space-y-4 px-4 pt-5 pb-24">
-      <header className="flex items-center gap-3">
-        <Link
-          href="/liisi"
-          aria-label="Back to home"
-          className="rounded-full border border-border bg-card p-2 text-foreground"
-        >
-          <ArrowLeft size={18} />
-        </Link>
-        <div>
-          <h1 className="text-xl font-semibold">Interior Design</h1>
-          <p className="text-xs text-muted-foreground">Select your preferred package</p>
+    <main className="min-h-screen w-full bg-[#f3f3f3] pb-8">
+      <header className="border-b border-[#d5d5d5] bg-[#f7f7f7] px-5 py-4">
+        <div className="mx-auto w-full max-w-sm">
+          <div className="flex items-start justify-between">
+            <div className="flex items-start gap-3">
+              <Link
+                href="/liisi"
+                aria-label="Back to home"
+                className="mt-0.5 rounded-full p-1 text-[#2b2b2b]"
+              >
+                <ArrowLeft size={18} />
+              </Link>
+              <div>
+                <h1 className="text-[35px] font-medium text-[#2e2e2e]">Interior Design</h1>
+                <p className="text-base text-[#8a8a8a]">Choose your preferred package</p>
+              </div>
+            </div>
+            <span className="rounded-full bg-[#ececec] px-3 py-1 text-[13px] text-[#8c8c8c]">
+              Not Selected
+            </span>
+          </div>
         </div>
       </header>
 
-      <section className="space-y-3">
-        {packages.map((pkg) => (
-          <Card key={pkg.id} className="p-4">
-            <div className="mb-2 flex items-start justify-between gap-3">
-              <div>
-                <h2 className="text-base font-semibold">{pkg.name}</h2>
-                <p className="text-xs text-muted-foreground">{pkg.subtitle}</p>
-              </div>
-              <p className="text-sm font-semibold text-primary">{euro(pkg.priceEur)}</p>
-            </div>
+      <section className="mx-auto w-full max-w-sm space-y-4 px-5 pt-4">
+        <div className="rounded-2xl border border-[#d7d7d7] bg-white px-4 py-3 text-[#7d7d7d] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+          Select one of our curated packages or request a custom design tailored to your preferences.
+        </div>
 
-            <p className="mb-3 text-sm text-muted-foreground">{pkg.description}</p>
+        <div className="grid grid-cols-2 gap-3">
+          {packages.map((pkg) => {
+            const visual = packageVisuals[pkg.id];
 
-            <ul className="mb-3 space-y-1.5">
-              {pkg.highlights.map((feature) => (
-                <li key={feature} className="flex items-center gap-2 text-sm">
-                  <Check size={14} className="text-primary" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            if (!visual) {
+              return null;
+            }
 
-            <button
-              type="button"
-              className={[
-                "w-full rounded-lg px-3 py-2 text-sm font-medium transition",
-                pkg.recommended
-                  ? "bg-primary text-primary-foreground"
-                  : "border border-border bg-background text-foreground hover:bg-muted/50",
-              ].join(" ")}
-            >
-              {pkg.recommended ? "Recommended" : "Choose package"}
-            </button>
-          </Card>
-        ))}
+            return (
+              <DesignPackageTile
+                key={pkg.id}
+                packageLabel={visual.label}
+                title={visual.title}
+                imageUrl={visual.imageUrl}
+                tags={visual.tags}
+              />
+            );
+          })}
+        </div>
+
+        <CustomSelectionCard />
       </section>
     </main>
   );
