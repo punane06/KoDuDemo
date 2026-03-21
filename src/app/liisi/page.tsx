@@ -11,18 +11,16 @@ import {
 } from "@/lib/mockData";
 import { ConstructionProgressCard } from "@/components/liisi/construction-progress-card";
 import { LatestUpdateCard } from "@/components/liisi/latest-update-card";
-import { BottomNav } from "@/components/liisi/bottom-nav";
-import { liisiText, liisiSurface, liisiColors, liisiLayout } from "@/components/liisi/liisi-design-system";
+import { liisiText, liisiColors, liisiLayout } from "@/components/liisi/liisi-design-system";
+import { LiisiHeader } from "@/components/liisi/liisi-header";
+import { LiisiChatFab } from "@/components/liisi/liisi-chat-fab";
 
 export default function LiisiPage() {
   return (
     <>
-      <main className={`mx-auto w-full ${liisiLayout.containerWidth} flex-1 ${liisiLayout.sectionGap} ${liisiLayout.pageMargin} ${liisiLayout.pageVerticalMargin}`}>
-        {/* ── Header ─────────────────────────────────── */}
-        <header className={liisiSurface.card}>
-          <p className={liisiText.caption}>Tere Liis</p>
-          <h1 className={`mt-0.5 ${liisiText.cardTitle}`}>{apartment.address}</h1>
-        </header>
+      <LiisiHeader title={apartment.address} subtitle="Tere Liis" variant="home" />
+
+      <main className={`mx-auto w-full ${liisiLayout.containerWidth} flex-1 ${liisiLayout.sectionGap} ${liisiLayout.pageMargin} pt-4 pb-10`}>
 
         {/* ── Construction progress ───────────────────── */}
         <ConstructionProgressCard
@@ -117,7 +115,7 @@ export default function LiisiPage() {
         </div>
       </main>
 
-      <BottomNav />
+      <LiisiChatFab />
     </>
   );
 }

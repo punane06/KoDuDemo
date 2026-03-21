@@ -44,6 +44,12 @@ export const liisiText = {
   // Status/Meta
   dateCategory: "text-[10px] font-medium", // color applied per context
   stageName: "text-[9px] text-center leading-tight",
+
+  // App header
+  appHeaderEyebrow: "text-[12px] text-[#f1d88a]",
+  appHeaderTitle: "font-['Bell_MT',Georgia,serif] text-[36px] leading-[1] text-[#FACC58]",
+  appHeaderTitleCompact: "text-[20px] font-medium leading-tight text-[#FACC58]",
+  appHeaderSubtitle: "text-[12px] text-[#cfdde0]",
 } as const;
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -92,6 +98,7 @@ export const liisiSurface = {
   // Headers
   headerBar: "border-b border-[#d5d5d5] bg-[#f7f7f7]",
   headerBarAlt: "bg-[#f3f3f3]",
+  appHeader: "w-full border-b border-[#2c5358] bg-[#223F43]",
 
   // Lists & rows
   row: "rounded-[12px] border border-[#e0e0e0] bg-white",
@@ -138,6 +145,10 @@ export const liisiControls = {
   // Custom CTA (golden)
   customCta: "flex w-full items-center gap-3 rounded-[18px] border border-dashed border-[#d3d3d3] bg-white px-4 py-4 text-left shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:bg-[#f9f9f9] transition-colors",
   customCtaIcon: "flex h-12 w-12 items-center justify-center rounded-xl bg-[#cfb682] text-white",
+
+  // Floating chat action (replaces bottom nav)
+  chatFab:
+    "fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full border border-[#2c5358] bg-[#223F43] text-[#FACC58] shadow-[0_8px_18px_rgba(0,0,0,0.24)] transition-colors hover:bg-[#1e373b]",
 } as const;
 
 // ═══════════════════════════════════════════════════════════════════════════

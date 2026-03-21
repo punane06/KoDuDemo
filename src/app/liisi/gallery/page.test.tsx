@@ -16,8 +16,9 @@ describe("Liisi Gallery Page", () => {
     expect(screen.getByLabelText(/Previous photo/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Next photo/i)).toBeInTheDocument();
 
-    // Verify close button
-    expect(screen.getByLabelText(/Close gallery/i)).toBeInTheDocument();
+    // Verify back button in unified header
+    expect(screen.getByLabelText(/Back to home/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Start chat/i)).toBeInTheDocument();
   });
 
   it("renders photo thumbnails for navigation", () => {

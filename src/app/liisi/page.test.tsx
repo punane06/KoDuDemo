@@ -32,11 +32,9 @@ describe("Liisi Home Page", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders bottom navigation", () => {
+  it("renders floating chat action", () => {
     render(<LiisiPage />);
 
-    // Check for nav links
-    const homeLink = screen.getAllByText(/Home/i)[0];
-    expect(homeLink).toBeInTheDocument();
+    expect(screen.getByLabelText(/Start chat/i)).toBeInTheDocument();
   });
 });

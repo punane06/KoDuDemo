@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import type { ProgressGalleryPhoto } from "@/lib/mockData";
 import { liisiColors } from "@/components/liisi/liisi-design-system";
+import { LiisiHeader } from "@/components/liisi/liisi-header";
+import { LiisiChatFab } from "@/components/liisi/liisi-chat-fab";
 
 interface ProgressGalleryViewerProps {
   photos: ProgressGalleryPhoto[];
@@ -28,21 +29,12 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
 
   return (
     <main className="flex min-h-screen w-screen flex-col bg-black text-white">
-      <header className="flex items-start justify-between px-6 pt-12 pb-6">
-        <div>
-          <h1 className="text-2xl font-medium">Progress Gallery</h1>
-          <p className="mt-1 text-sm text-white/60">
-            {activeIndex + 1} of {total}
-          </p>
-        </div>
-        <Link
-          href="/liisi"
-          aria-label="Close gallery"
-          className="rounded-full p-2 text-white/80 transition hover:bg-white/10 hover:text-white"
-        >
-          <X size={22} />
-        </Link>
-      </header>
+      <LiisiHeader
+        title="Progress Gallery"
+        subtitle={`${activeIndex + 1} of ${total}`}
+        backHref="/liisi"
+        variant="inner"
+      />
 
       <section className="relative flex flex-1 items-center justify-center px-0">
         <div className="relative h-[42vh] w-full overflow-hidden bg-zinc-950">
@@ -87,10 +79,16 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
                 onClick={() => setActiveIndex(index)}
                 className={[
                   "relative h-16 w-16 shrink-0 cursor-pointer overflow-hidden rounded-2xl border transition",
-                  isActive
-                    ? `border-[${liisiColors.accent}] ring-2 ring-[${liisiColors.accent}]/30`
-                    : "border-white/15 opacity-80 hover:opacity-100",
+                  isActive ? "opacity-100" : "border-white/15 opacity-80 hover:opacity-100",
                 ].join(" ")}
+                style={
+                  isActive
+                    ? {
+                        borderColor: liisiColors.accent,
+                        boxShadow: `0 0 0 2px ${liisiColors.accent}4D`,
+                      }
+                    : undefined
+                }
                 aria-label={`Open ${photo.title}`}
                 aria-pressed={isActive}
               >
@@ -106,6 +104,8 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
           })}
         </div>
       </section>
+
+      <LiisiChatFab />
     </main>
   );
 }
