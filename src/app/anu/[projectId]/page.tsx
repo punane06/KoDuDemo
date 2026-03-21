@@ -1,17 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BarChart3, Clock3, PenLine, Plus } from "lucide-react";
 
-import { PageShell } from "@/components/dashboard/page-shell";
-import { SectionCard } from "@/components/dashboard/section-card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { AnuPanel } from "@/components/anu/anu-panel";
+import { anuControls, anuState, anuSurface, anuText } from "@/components/anu/anu-design-system";
+import { AnuViewFrame } from "@/components/anu/anu-view-frame";
 import {
   developerProjects,
   getDeveloperProjectById,
   getDeveloperProjectDetailById,
+  recentUpdates,
 } from "@/lib/mockData";
-import { mapUnitStatusToBadgeVariant } from "@/lib/presentation/status";
+import { getProjectUpdateImageSrc } from "@/lib/presentation/anu";
 import { cn } from "@/lib/utils";
 
 type ProjectDetailPageProps = {
@@ -35,110 +36,136 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     notFound();
   }
 
+  const fallbackUpdateImageUrl = "/kodu-developer-svg-03.svg";
+
   return (
-    <PageShell
-      className="max-w-5xl"
-      eyebrow="Anu View"
+    <AnuViewFrame
       title={project.name}
-      description="Project management overview with construction updates, visual progress, and unit status."
+      backHref="/anu"
       actions={
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">{project.unitCount} units</Button>
-          <Button variant="outline" size="sm">Statistics</Button>
+          <span className={`inline-flex items-center gap-1 ${anuControls.subtlePillCompact}`}>
+            <Clock3 size={11} />
+            {project.lastUpdated}
+          </span>
+          <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+            <BarChart3 size={10} />
+            Statistics
+          </button>
         </div>
       }
     >
-      <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
-        <SectionCard
+      <div className="space-y-2.5">
+        <AnuPanel
           title={detail.stageSummary}
-          action={<Button variant="outline" size="sm">Update Progress</Button>}
-          contentClassName="space-y-5"
+          titleClassName={anuText.panelHeading}
+          action={
+            <button
+              type="button"
+              className={`inline-flex items-center gap-1 ${anuControls.subtleButtonCompact} ${anuControls.disabled}`}
+              disabled
+              title="Coming soon"
+            >
+              <PenLine size={10} />
+              Update Progress
+            </button>
+          }
+          contentClassName="space-y-3"
         >
           <div>
-            <p className="text-xs text-muted-foreground">Current stage</p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <p className={anuText.micro}>Current Stage</p>
+            <div className="mt-1.5 flex flex-wrap gap-2">
               {detail.constructionStages.map((stage) => (
-                <div
-                  key={stage.id}
-                  className={cn(
-                    "flex min-w-20 items-center justify-center rounded-full border px-3 py-2 text-xs",
-                    stage.done && "border-primary/20 bg-primary text-primary-foreground",
-                    stage.current && "border-amber-400 bg-amber-100 text-amber-900",
-                    !stage.done && !stage.current && "border-border bg-background text-muted-foreground"
-                  )}
-                >
-                  {stage.label}
+                <div key={stage.id} className="flex flex-col items-center gap-1">
+                  <span
+                    className={cn(
+                      "flex h-6 w-6 items-center justify-center rounded-full border text-[11px]",
+                      stage.done && anuState.stageDone,
+                      stage.current && anuState.stageCurrent,
+                      !stage.done && !stage.current && anuState.stageTodo
+                    )}
+                  >
+                    {stage.label.slice(0, 1)}
+                  </span>
+                  <p className={anuText.tiny}>{stage.label}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className={`grid grid-cols-2 gap-2 ${anuSurface.insetCard} px-3 py-2.5`}>
             <div>
-              <p className="text-xs text-muted-foreground">Next stage</p>
-              <p className="mt-1 text-sm font-medium">{detail.nextStage}</p>
+              <p className={anuText.body}>Next Stage:</p>
+              <p className={`${anuText.bodyStrong} mt-1`}>{detail.nextStage}</p>
             </div>
-            <div>
-              <p className="text-xs text-muted-foreground">Est. completion</p>
-              <p className="mt-1 text-sm font-medium">{detail.stageDate}</p>
+            <div className="text-right">
+              <p className={anuText.body}>Est. Completion:</p>
+              <p className={`${anuText.bodyStrong} mt-1`}>{detail.stageDate}</p>
             </div>
           </div>
-        </SectionCard>
+        </AnuPanel>
 
-        <SectionCard
-          title="Construction Photos"
-          action={<Button variant="outline" size="sm">Upload Photos</Button>}
-          contentClassName="grid grid-cols-2 gap-3"
-        >
-          {detail.photoUrls.map((photoUrl) => (
-            <figure key={photoUrl} className="overflow-hidden rounded-lg border border-border/80 bg-background">
-              <Image src={photoUrl} alt="Construction progress photo" width={320} height={220} className="h-32 w-full object-cover" />
-            </figure>
-          ))}
-        </SectionCard>
-      </div>
+        <div className="grid gap-3 xl:grid-cols-[1.1fr_0.9fr]">
+          <AnuPanel title="Project Updates" contentClassName="space-y-2">
+            {recentUpdates.map((update, index) => (
+              <article key={update.id} className={`grid grid-cols-[44px_1fr_auto] items-start gap-2 ${anuSurface.panelInset} p-1.5`}>
+                <Image
+                  src={getProjectUpdateImageSrc(detail.photoUrls, index, fallbackUpdateImageUrl)}
+                  alt={update.title}
+                  width={44}
+                  height={34}
+                  className="h-[34px] w-[44px] rounded-[6px] object-cover"
+                />
+                <div>
+                  <p className={anuText.itemTitle}>{update.title}</p>
+                  <p className={`mt-0.5 ${anuText.itemBody}`}>{update.description}</p>
+                </div>
+                <p className={anuText.tiny}>{update.date}</p>
+              </article>
+            ))}
+          </AnuPanel>
 
-      <SectionCard
-        className="mt-4"
-        title={`Units (${project.unitCount})`}
-        action={
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">Send Message</Button>
-            <Button variant="outline" size="sm" render={<Link href="/anu" />}>
-              Back to overview
-            </Button>
-          </div>
-        }
-        contentClassName="space-y-2"
-      >
-        <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-          <Badge variant="outline">All units</Badge>
-          <Badge variant="outline">Sold</Badge>
-          <Badge variant="outline">Reserved</Badge>
-          <Badge variant="outline">Available</Badge>
+          <AnuPanel
+            title={`Units (${project.unitCount})`}
+            action={
+              <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+                <Plus size={10} />
+                Send Message
+              </button>
+            }
+            contentClassName="space-y-1.5"
+          >
+            <div className={`grid grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr] ${anuSurface.mutedRow} px-2 py-1 ${anuText.tableHeading}`}>
+              <p>Unit ID</p>
+              <p>Status</p>
+              <p>Design</p>
+              <p>Package</p>
+            </div>
+
+            {detail.units.map((unit) => (
+              <Link
+                key={unit.id}
+                href={`/anu/${project.id}/${unit.id}`}
+                className={`grid grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr] items-center ${anuSurface.softRow} px-2 py-1 ${anuText.tableCell} transition-colors hover:bg-[#f2f2f2]`}
+              >
+                <p>{unit.name}</p>
+                <p className="text-[#6a6a6a]">{unit.status}</p>
+                <p className="text-[#6a6a6a]">{unit.designStage}</p>
+                <p className="truncate text-[#6a6a6a]">{unit.packageName}</p>
+              </Link>
+            ))}
+          </AnuPanel>
         </div>
 
-        {detail.units.map((unit) => (
+        <div className="flex justify-end">
           <Link
-            key={unit.id}
-            href={`/anu/${project.id}/${unit.id}`}
-            className="flex flex-col gap-3 rounded-xl border border-border/90 bg-background p-3 transition hover:border-primary/40 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between"
+            href="/anu"
+            className={`inline-flex items-center ${anuControls.subtleButton}`}
           >
-            <div>
-              <p className="font-medium">{unit.name}</p>
-              <p className="text-xs text-muted-foreground">
-                {unit.progressPercent ? `${unit.progressPercent}% · ` : ""}
-                {unit.designStage} · {unit.packageName}
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant={mapUnitStatusToBadgeVariant(unit.status)}>{unit.status}</Badge>
-              <Badge variant="outline">{unit.designStage}</Badge>
-              <Badge variant="secondary">{unit.packageName}</Badge>
-            </div>
+            Back to overview
           </Link>
-        ))}
-      </SectionCard>
-    </PageShell>
+        </div>
+      </div>
+    </AnuViewFrame>
   );
 }

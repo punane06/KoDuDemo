@@ -1,0 +1,16 @@
+import { render, screen } from "@testing-library/react";
+
+import UnitDetailPage from "./page";
+
+describe("Anu unit page smoke", () => {
+  it("renders with valid project and unit params", async () => {
+    const element = await UnitDetailPage({
+      params: Promise.resolve({ projectId: "proj-iseara-lutsu", unitId: "unit-2-9" }),
+    });
+
+    render(element);
+
+    expect(screen.getByText("Client")).toBeInTheDocument();
+    expect(screen.getByText("Interior Design")).toBeInTheDocument();
+  });
+});

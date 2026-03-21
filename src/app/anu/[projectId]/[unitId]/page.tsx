@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { MessageSquare, Upload } from "lucide-react";
 
-import { PageShell } from "@/components/dashboard/page-shell";
-import { SectionCard } from "@/components/dashboard/section-card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { AnuPanel } from "@/components/anu/anu-panel";
+import { anuControls, anuSurface, anuText } from "@/components/anu/anu-design-system";
+import { AnuViewFrame } from "@/components/anu/anu-view-frame";
 import {
   developerProjects,
   getDeveloperProjectById,
@@ -12,7 +12,6 @@ import {
   getProjectUnit,
   getUnitDetailOrFallback,
 } from "@/lib/mockData";
-import { mapUnitStatusToBadgeVariant } from "@/lib/presentation/status";
 
 type UnitDetailPageProps = {
   params: Promise<{
@@ -44,105 +43,136 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
   }
 
   return (
-    <PageShell
-      className="max-w-5xl"
-      eyebrow="Anu View"
+    <AnuViewFrame
       title={unit.name}
-      description="Unit management view for client communication, interior selections, and file handling."
+      backHref={`/anu/${projectId}`}
       actions={
         <div className="flex items-center gap-2">
-          <Badge variant={mapUnitStatusToBadgeVariant(unit.status)}>{unit.status}</Badge>
-          <Button variant="outline" size="sm">Send Message</Button>
+          <span className={anuControls.subtlePillCompact}>
+            {unit.status}
+          </span>
+          <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+            <MessageSquare size={10} />
+            Send Message
+          </button>
         </div>
       }
     >
-      <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <SectionCard title="Client" contentClassName="space-y-3">
-          <div className="flex items-center gap-2">
-            <p className="font-medium">{detail.clientName}</p>
-            <Badge variant="outline">{unit.status}</Badge>
-          </div>
-          <div className="rounded-xl border border-border/80 bg-background p-3 text-sm">
-            <p>Owner: {detail.ownerName}</p>
-            <p className="text-muted-foreground">Email: {detail.ownerEmail}</p>
-            <p className="text-muted-foreground">Phone: {detail.ownerPhone}</p>
-          </div>
+      <div className="space-y-2.5">
+        <div className="grid gap-2.5 lg:grid-cols-[1.04fr_0.96fr]">
+          <AnuPanel title="Client" titleClassName={anuText.panelHeading} contentClassName="space-y-2">
+            <div className={`${anuSurface.panelInset} px-2.5 py-1.5 text-[11px] text-[#565656]`}>
+              <p className={anuText.fieldValue}>{detail.clientName}</p>
+              <p className="mt-1">Owner: {detail.ownerName}</p>
+              <p>Email: {detail.ownerEmail}</p>
+              <p>Phone: {detail.ownerPhone}</p>
+            </div>
 
-          <div className="rounded-xl border border-border/80 bg-background p-3">
-            <p className="mb-2 text-sm font-medium">Recent Messages</p>
-            <div className="space-y-2">
-              {detail.recentMessages.length > 0 ? detail.recentMessages.map((message) => (
-                <article key={message.id} className="rounded-lg bg-muted p-2 text-sm">
-                  <p className="font-medium">{message.author}</p>
-                  <p className="text-muted-foreground">{message.text}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{message.time}</p>
-                </article>
-              )) : <p className="text-sm text-muted-foreground">No recent messages.</p>}
-            </div>
-          </div>
-        </SectionCard>
-
-        <SectionCard
-          title="Interior Design"
-          action={<Button variant="outline" size="sm">Edit Selection</Button>}
-          contentClassName="space-y-3"
-        >
-          <div className="rounded-xl border border-border/80 bg-background p-3 text-sm">
-            <p className="text-muted-foreground">Style</p>
-            <p className="font-medium">{detail.style}</p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl border border-border/80 bg-background p-3 text-sm">
-              <p className="text-muted-foreground">Flooring</p>
-              <p className="font-medium">{detail.flooring}</p>
-            </div>
-            <div className="rounded-xl border border-border/80 bg-background p-3 text-sm">
-              <p className="text-muted-foreground">Bathroom</p>
-              <p className="font-medium">{detail.bathroom}</p>
-            </div>
-            <div className="rounded-xl border border-border/80 bg-background p-3 text-sm">
-              <p className="text-muted-foreground">Kitchen</p>
-              <p className="font-medium">{detail.kitchen}</p>
-            </div>
-          </div>
-        </SectionCard>
-      </div>
-
-      <div className="mt-4 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <SectionCard
-          title="Files & Plans"
-          action={<Button variant="outline" size="sm">Upload File</Button>}
-          contentClassName="space-y-3"
-        >
-          {detail.files.map((file) => (
-            <article key={file.id} className="flex items-center justify-between rounded-xl border border-border/80 bg-background p-3 text-sm">
-              <div>
-                <p className="font-medium">{file.title}</p>
-                <p className="text-xs text-muted-foreground">{file.date}</p>
+            <div className={`${anuSurface.panelInset} p-2`}>
+              <p className={`mb-1.5 ${anuText.panelHeading}`}>Recent Messages</p>
+              <div className="space-y-1.5">
+                {detail.recentMessages.length > 0 ? detail.recentMessages.map((message) => (
+                  <article key={message.id} className={`${anuSurface.softRow} p-1.5`}>
+                    <p className={anuText.itemTitle}>{message.author}</p>
+                    <p className={anuText.itemBody}>{message.text}</p>
+                    <p className={`mt-1 ${anuText.tiny}`}>{message.time}</p>
+                  </article>
+                )) : <p className={anuText.body}>No recent messages.</p>}
               </div>
-              <Button variant="ghost" size="sm">Download</Button>
-            </article>
-          ))}
+            </div>
+          </AnuPanel>
 
-          <div className="grid gap-2 sm:grid-cols-3">
-            {detail.quickUploads.map((item) => (
-              <Button key={item} variant="outline" size="sm">{item}</Button>
+          <AnuPanel
+            title="Interior Design"
+            titleClassName={anuText.panelHeading}
+            action={
+              <button type="button" className={`${anuControls.subtleButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+                Edit Selection
+              </button>
+            }
+            contentClassName="space-y-2"
+          >
+            <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
+              <p className={anuText.micro}>Style</p>
+              <p className={`mt-1 ${anuText.fieldValue}`}>{detail.style}</p>
+            </div>
+
+            <div className="grid gap-1.5 sm:grid-cols-3">
+              <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
+                <p className={anuText.micro}>Flooring</p>
+                <p className={`mt-1 ${anuText.fieldValue}`}>{detail.flooring}</p>
+              </div>
+              <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
+                <p className={anuText.micro}>Bathroom</p>
+                <p className={`mt-1 ${anuText.fieldValue}`}>{detail.bathroom}</p>
+              </div>
+              <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
+                <p className={anuText.micro}>Kitchen</p>
+                <p className={`mt-1 ${anuText.fieldValue}`}>{detail.kitchen}</p>
+              </div>
+            </div>
+          </AnuPanel>
+        </div>
+
+        <div className="grid gap-2.5 lg:grid-cols-[1.1fr_0.9fr]">
+          <AnuPanel
+            title="Files & Plans"
+            titleClassName={anuText.panelHeading}
+            action={
+              <button
+                type="button"
+                className={`inline-flex items-center gap-1 ${anuControls.subtleButtonCompact} ${anuControls.disabled}`}
+                disabled
+                title="Coming soon"
+              >
+                <Upload size={10} />
+                Upload File
+              </button>
+            }
+            contentClassName="space-y-1.5"
+          >
+            {detail.files.map((file) => (
+              <article key={file.id} className={`flex items-center justify-between ${anuSurface.panelInset} px-2 py-1.5`}>
+                <div>
+                  <p className={anuText.itemTitle}>{file.title}</p>
+                  <p className={anuText.itemBody}>{file.date}</p>
+                </div>
+                <button type="button" className={`${anuControls.subtleButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+                  Download
+                </button>
+              </article>
             ))}
-          </div>
-        </SectionCard>
 
-        <SectionCard title="Unit Notes" contentClassName="space-y-3">
-          <div className="rounded-xl border border-border/80 bg-background p-3 text-sm text-muted-foreground">
-            {detail.notes}
-          </div>
-          <div className="flex justify-end gap-2">
-            <Button variant="outline" size="sm" render={<Link href={`/anu/${projectId}`} />}>
-              Back to project
-            </Button>
-            <Button size="sm">Save Notes</Button>
-          </div>
-        </SectionCard>
+            {detail.files.length === 0 ? <p className={anuText.body}>No files uploaded yet.</p> : null}
+
+            <div className="grid gap-1.5 sm:grid-cols-3">
+              {detail.quickUploads.map((item) => (
+                <button key={item} className="rounded-[6px] border border-[#d6d6d6] bg-[#f6f6f6] px-2 py-0.5 text-[10px] text-[#5a5a5a]">
+                  {item}
+                </button>
+              ))}
+            </div>
+          </AnuPanel>
+
+          <AnuPanel title="Unit Notes" titleClassName={anuText.panelHeading} contentClassName="space-y-2">
+            <div className={`min-h-24 ${anuSurface.panelInset} px-2 py-1.5 text-[11px] text-[#666666]`}>
+              {detail.notes}
+            </div>
+
+            <div className="flex justify-end gap-2">
+              <Link
+                href={`/anu/${projectId}`}
+                className={anuControls.subtleButtonCompact}
+              >
+                Back to project
+              </Link>
+              <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+                Save Notes
+              </button>
+            </div>
+          </AnuPanel>
+        </div>
       </div>
-    </PageShell>
+    </AnuViewFrame>
   );
 }

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 /**
  * KoduLogo — two variants extracted from the official SVG files:
  *   variant="developer"  →  "kodu developer" (teal #223f43) — used in Anu
@@ -14,18 +16,22 @@ interface KoduLogoProps {
 export function KoduLogo({ variant = "default", className = "h-7 w-auto" }: KoduLogoProps) {
   if (variant === "developer") {
     return (
-      <img
+      <Image
         src="/kodu-developer-svg-03.svg"
         alt="kodu developer"
+        width={180}
+        height={56}
         className={className}
       />
     );
   }
 
   return (
-    <img
+    <Image
       src="/kodu-logo-02.svg"
       alt="kodu"
+      width={150}
+      height={56}
       className={className}
     />
   );
