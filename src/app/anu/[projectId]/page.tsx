@@ -41,11 +41,11 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       backHref="/anu"
       actions={
         <div className="flex items-center gap-2">
-          <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] ${anuControls.subtlePill}`}>
+          <span className={`inline-flex items-center gap-1 ${anuControls.subtlePillCompact}`}>
             <Clock3 size={11} />
             {project.lastUpdated}
           </span>
-          <button className={`${anuControls.primaryButton} px-2 py-0.5 text-[10px]`}>
+          <button className={anuControls.primaryButtonCompact}>
             <BarChart3 size={10} />
             Statistics
           </button>
@@ -55,9 +55,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       <div className="space-y-2.5">
         <AnuPanel
           title={detail.stageSummary}
-          titleClassName="text-[10px] uppercase tracking-[0.05em] text-[#666666]"
+          titleClassName={anuText.panelHeading}
           action={
-            <button className={`inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] ${anuControls.subtleButton}`}>
+            <button className={`inline-flex items-center gap-1 ${anuControls.subtleButtonCompact}`}>
               <PenLine size={10} />
               Update Progress
             </button>
@@ -79,7 +79,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                   >
                     {stage.label.slice(0, 1)}
                   </span>
-                  <p className="text-[9px] text-[#7b7b7b]">{stage.label}</p>
+                  <p className={anuText.tiny}>{stage.label}</p>
                 </div>
               ))}
             </div>
@@ -109,10 +109,10 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                   className="h-[34px] w-[44px] rounded-[6px] object-cover"
                 />
                 <div>
-                  <p className="text-[11px] font-medium leading-tight text-[#3a3a3a]">{update.title}</p>
-                  <p className="mt-0.5 text-[10px] leading-tight text-[#777777]">{update.description}</p>
+                  <p className={anuText.itemTitle}>{update.title}</p>
+                  <p className={`mt-0.5 ${anuText.itemBody}`}>{update.description}</p>
                 </div>
-                <p className="text-[9px] text-[#7e7e7e]">{update.date}</p>
+                <p className={anuText.tiny}>{update.date}</p>
               </article>
             ))}
           </AnuPanel>
@@ -120,7 +120,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           <AnuPanel
             title={`Units (${project.unitCount})`}
             action={
-              <button className={`${anuControls.primaryButton} px-2 py-0.5 text-[10px]`}>
+              <button className={anuControls.primaryButtonCompact}>
                 <Plus size={10} />
                 Send Message
               </button>
