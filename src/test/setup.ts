@@ -15,4 +15,5 @@ vi.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("notFound called");
   },
+  usePathname: () => "/",
 }));

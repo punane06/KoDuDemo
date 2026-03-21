@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { liisiText, liisiSurface, liisiState } from "@/components/liisi/liisi-design-system";
 
 interface DesignPackageTileProps {
   packageLabel: string;
@@ -14,7 +15,7 @@ export function DesignPackageTile({
   imageUrl,
 }: DesignPackageTileProps) {
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#dddddd] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+    <article className={liisiSurface.card}>
       <div className="relative h-36 w-full">
         <Image
           src={imageUrl}
@@ -26,14 +27,14 @@ export function DesignPackageTile({
       </div>
 
       <div className="space-y-1 px-3 py-2.5">
-        <p className="text-[12px] text-[#858585]">{packageLabel}</p>
-        <h3 className="text-[18px] font-medium leading-[1.15] text-[#2b2b2b]">{title}</h3>
+        <p className={liisiText.labelSoft}>{packageLabel}</p>
+        <h3 className={liisiText.cardTitle}>{title}</h3>
         <div className="space-y-1 pt-1">
-          <p className="inline-block rounded-md bg-[#f2f0ed] px-2 py-0.5 text-[11px] text-[#878787]">
+          <p className={`${liisiState.badge}`}>
             {tags[0]}
           </p>
           <p className="block" />
-          <p className="inline-block rounded-md bg-[#f2f0ed] px-2 py-0.5 text-[11px] text-[#878787]">
+          <p className={`${liisiState.badge}`}>
             {tags[1]}
           </p>
         </div>

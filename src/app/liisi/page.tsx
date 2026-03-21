@@ -12,15 +12,16 @@ import {
 import { ConstructionProgressCard } from "@/components/liisi/construction-progress-card";
 import { LatestUpdateCard } from "@/components/liisi/latest-update-card";
 import { BottomNav } from "@/components/liisi/bottom-nav";
+import { liisiText, liisiSurface, liisiColors, liisiLayout } from "@/components/liisi/liisi-design-system";
 
 export default function LiisiPage() {
   return (
     <>
-      <main className="mx-auto w-full max-w-sm flex-1 space-y-4 px-4 pt-5 pb-24">
+      <main className={`mx-auto w-full ${liisiLayout.containerWidth} flex-1 ${liisiLayout.sectionGap} ${liisiLayout.pageMargin} ${liisiLayout.pageVerticalMargin}`}>
         {/* ── Header ─────────────────────────────────── */}
-        <header className="rounded-2xl border border-border bg-card px-4 py-3">
-          <p className="text-sm text-muted-foreground">Tere Liis</p>
-          <h1 className="mt-0.5 text-xl font-semibold">{apartment.address}</h1>
+        <header className={liisiSurface.card}>
+          <p className={liisiText.caption}>Tere Liis</p>
+          <h1 className={`mt-0.5 ${liisiText.cardTitle}`}>{apartment.address}</h1>
         </header>
 
         {/* ── Construction progress ───────────────────── */}
@@ -42,8 +43,8 @@ export default function LiisiPage() {
 
         {/* ── Quick Access ───────────────────────────── */}
         <div>
-          <h2 className="mb-2 text-sm font-semibold">Quick Access</h2>
-          <div className="grid grid-cols-2 gap-3">
+          <h2 className={liisiText.sectionHeading}>Quick Access</h2>
+          <div className={`grid ${liisiLayout.gridCols2} ${liisiLayout.gridGap} mt-2`}>
             <Link href="/liisi/documents">
               <Card className="flex cursor-pointer items-start gap-3 p-4 transition-colors hover:bg-muted/50">
                 <FileText size={18} className="mt-0.5 text-muted-foreground" />
@@ -80,11 +81,11 @@ export default function LiisiPage() {
         <Link
           href="/liisi/design"
           className="flex items-center gap-3 rounded-xl px-4 py-4 text-white"
-          style={{ backgroundColor: "#223F43" }}
+          style={{ backgroundColor: liisiColors.primary }}
         >
           <div
             className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundColor: "#FACC58" }}
+            style={{ backgroundColor: liisiColors.accent }}
           >
             <span className="text-lg">🖌️</span>
           </div>
@@ -97,18 +98,18 @@ export default function LiisiPage() {
 
         {/* ── Recent Updates ─────────────────────────── */}
         <div>
-          <h2 className="mb-3 text-sm font-semibold">Recent Updates</h2>
-          <ul className="space-y-4">
+          <h2 className={liisiText.sectionHeading}>Recent Updates</h2>
+          <ul className={`${liisiLayout.sectionGap} mt-3`}>
             {recentUpdates.map((update) => (
               <li key={update.id} className="flex gap-3">
                 <div
                   className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full"
-                  style={{ backgroundColor: "#FACC58" }}
+                  style={{ backgroundColor: liisiColors.accent }}
                 />
                 <div>
-                  <p className="text-xs text-muted-foreground">{update.date}</p>
-                  <p className="text-sm font-medium">{update.title}</p>
-                  <p className="text-xs text-muted-foreground">{update.description}</p>
+                  <p className={liisiText.captionMuted}>{update.date}</p>
+                  <p className={liisiText.label}>{update.title}</p>
+                  <p className={liisiText.captionMuted}>{update.description}</p>
                 </div>
               </li>
             ))}

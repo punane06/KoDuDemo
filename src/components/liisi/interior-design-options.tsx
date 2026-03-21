@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import type { DesignPackage } from "@/lib/mockData";
 import { DesignPackageTile } from "@/components/liisi/design-package-tile";
 import { CustomSelectionCard } from "@/components/liisi/custom-selection-card";
+import { liisiText, liisiSurface, liisiControls, liisiState, liisiLayout } from "@/components/liisi/liisi-design-system";
 
 interface InteriorDesignOptionsProps {
   packages: DesignPackage[];
@@ -46,36 +47,32 @@ const packageVisuals: Record<
 
 export function InteriorDesignOptions({ packages }: InteriorDesignOptionsProps) {
   return (
-    <main className="min-h-screen w-full bg-[#f3f3f3] pb-8">
-      <header className="border-b border-[#d5d5d5] bg-[#f7f7f7] px-5 py-4">
-        <div className="mx-auto w-full max-w-sm">
-          <div className="flex items-start justify-between">
+    <main className={`${liisiSurface.pageBackground}`}>
+      <header className={liisiSurface.headerBar}>
+          <div className="flex items-start justify-between px-5 py-4">
             <div className="flex items-start gap-3">
               <Link
                 href="/liisi"
                 aria-label="Back to home"
-                className="mt-0.5 rounded-full p-1 text-[#2b2b2b]"
+                className={`mt-0.5 ${liisiControls.backButton}`}
               >
                 <ArrowLeft size={18} />
               </Link>
               <div>
-                <h1 className="text-[18px] font-normal leading-[1.15] text-[#2e2e2e]">Interior Design</h1>
-                <p className="text-[12px] font-light text-[#6b6b6b]">Choose your preferred package</p>
+                <h1 className={liisiText.pageTitle}>Interior Design</h1>
+                <p className={liisiText.caption}>Choose your preferred package</p>
               </div>
             </div>
-            <span className="rounded-full bg-[#f5f3f0] px-3 py-1 text-[12px] font-light text-[#6b6b6b]">
-              Not Selected
-            </span>
+            <span className={liisiState.notSelected}>Not Selected</span>
           </div>
-        </div>
       </header>
 
-      <section className="mx-auto w-full max-w-sm space-y-4 px-5 pt-4">
-        <div className="rounded-2xl border border-[#d7d7d7] bg-white px-4 py-3 text-[14px] text-[#7d7d7d] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+      <section className={`mx-auto w-full ${liisiLayout.containerWidth} ${liisiLayout.sectionGap} px-5 pt-4`}>
+        <div className={`${liisiSurface.cardCompact} px-4 py-3 ${liisiText.subtext}`}>
           Select one of our curated packages or request a custom design tailored to your preferences.
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className={`grid ${liisiLayout.gridCols2} ${liisiLayout.gridGap}`}>
           {packages.map((pkg) => {
             const visual = packageVisuals[pkg.id];
 

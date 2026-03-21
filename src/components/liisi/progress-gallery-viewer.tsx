@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 import type { ProgressGalleryPhoto } from "@/lib/mockData";
+import { liisiColors } from "@/components/liisi/liisi-design-system";
 
 interface ProgressGalleryViewerProps {
   photos: ProgressGalleryPhoto[];
@@ -87,7 +88,7 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
                 className={[
                   "relative h-16 w-16 shrink-0 cursor-pointer overflow-hidden rounded-2xl border transition",
                   isActive
-                    ? "border-[#FACC58] ring-2 ring-[#FACC58]/30"
+                    ? `border-[${liisiColors.accent}] ring-2 ring-[${liisiColors.accent}]/30`
                     : "border-white/15 opacity-80 hover:opacity-100",
                 ].join(" ")}
                 aria-label={`Open ${photo.title}`}
