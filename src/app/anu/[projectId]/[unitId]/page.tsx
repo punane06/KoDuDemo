@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import {
   developerProjects,
   getDeveloperProjectById,
+  getDeveloperProjectDetailById,
   getProjectUnit,
-  getUnitDetailById,
+  getUnitDetailOrFallback,
 } from "@/lib/mockData";
+import { mapUnitStatusToBadgeVariant } from "@/lib/presentation/status";
 
 type UnitDetailPageProps = {
   params: Promise<{
@@ -21,35 +23,21 @@ type UnitDetailPageProps = {
 
 export function generateStaticParams() {
   return developerProjects.flatMap((project) => {
-    const units = project.id === "proj-iseara-lutsu"
-      ? ["unit-2-9", "unit-2-12", "unit-3-5", "unit-4-8", "unit-1-3", "unit-1-5"]
-      : project.id === "proj-tammeka"
-        ? ["unit-t-1", "unit-t-2"]
-        : ["unit-r-1", "unit-r-2"];
+    const details = getDeveloperProjectDetailById(project.id);
+    const units = details?.units ?? [];
 
-    return units.map((unitId) => ({
+    return units.map((unit) => ({
       projectId: project.id,
-      unitId,
+      unitId: unit.id,
     }));
   });
-}
-
-function statusVariant(status: string) {
-  switch (status) {
-    case "Sold":
-      return "secondary" as const;
-    case "Reserved":
-      return "outline" as const;
-    default:
-      return "ghost" as const;
-  }
 }
 
 export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
   const { projectId, unitId } = await params;
   const project = getDeveloperProjectById(projectId);
   const unit = getProjectUnit(projectId, unitId);
-  const detail = getUnitDetailById(unitId);
+  const detail = getUnitDetailOrFallback(projectId, unitId);
 
   if (!project || !unit || !detail) {
     notFound();
@@ -63,7 +51,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
       description="Unit management view for client communication, interior selections, and file handling."
       actions={
         <div className="flex items-center gap-2">
-          <Badge variant={statusVariant(unit.status)}>{unit.status}</Badge>
+          <Badge variant={mapUnitStatusToBadgeVariant(unit.status)}>{unit.status}</Badge>
           <Button variant="outline" size="sm">Send Message</Button>
         </div>
       }

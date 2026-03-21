@@ -39,6 +39,12 @@ export type GalleryPhoto = {
   url: string;
 };
 
+export type ProgressGalleryPhoto = {
+  id: string;
+  title: string;
+  url: string;
+};
+
 export type DeveloperProject = {
   id: string;
   name: string;
@@ -104,19 +110,86 @@ export type UnitDetail = {
   notes: string;
 };
 
+export type ConstructionUpdate = {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+};
+
 export const apartment: Apartment = {
   id: "apt-001",
-  title: "Liisi New Home",
-  address: "Tartu mnt 25, Tallinn",
+  title: "Iseara Lutsu 2-9",
+  address: "Iseara Lutsu 2-9",
   sizeM2: 74,
   rooms: 3,
   floor: 5,
-  completionDate: "2026-06-30",
+  completionDate: "September 2026",
   budgetTotalEur: 32000,
-  budgetUsedEur: 14500,
-  progressPercent: 46,
+  budgetUsedEur: 19200,
+  progressPercent: 60,
   status: "in-progress",
 };
+
+export const liisiConstructionStages: ConstructionStage[] = [
+  { id: "st-foundation", label: "Foundation", done: true },
+  { id: "st-structure",  label: "Structure",  done: true },
+  { id: "st-exterior",   label: "Exterior",   done: true },
+  { id: "st-interior",   label: "Interior",   done: false, current: true },
+  { id: "st-handover",   label: "Handover",   done: false },
+];
+
+export const liisiLatestUpdate = {
+  date: "Mar 18",
+  category: "Interior Works",
+  imageUrl: "https://picsum.photos/600/300?random=201",
+  text: "We have completed painting your feature wall in the living room. The soft beige tone creates a warm and elegant atmosphere.",
+  totalCount: 4,
+};
+
+export const liisiProgressGallery: ProgressGalleryPhoto[] = [
+  {
+    id: "progress-001",
+    title: "Exterior overview",
+    url: "https://picsum.photos/900/1400?random=301",
+  },
+  {
+    id: "progress-002",
+    title: "Interior corridor",
+    url: "https://picsum.photos/900/1400?random=302",
+  },
+  {
+    id: "progress-003",
+    title: "Worksite update",
+    url: "https://picsum.photos/900/1400?random=303",
+  },
+  {
+    id: "progress-004",
+    title: "Landscape progress",
+    url: "https://picsum.photos/900/1400?random=304",
+  },
+];
+
+export const recentUpdates: ConstructionUpdate[] = [
+  {
+    id: "upd-001",
+    date: "Mar 18",
+    title: "Tiling in progress",
+    description: "Bathroom and kitchen tiling work has started.",
+  },
+  {
+    id: "upd-002",
+    date: "Mar 15",
+    title: "Electrical wiring completed",
+    description: "All electrical installations on floors 1-3 are complete.",
+  },
+  {
+    id: "upd-003",
+    date: "Mar 10",
+    title: "Plumbing installed",
+    description: "Water and sewage systems have been installed.",
+  },
+];
 
 export const designPackages: DesignPackage[] = [
   {
@@ -418,4 +491,33 @@ export function getProjectUnit(projectId: string, unitId: string) {
 
 export function getUnitDetailById(unitId: string) {
   return unitDetails[unitId];
+}
+
+export function getUnitDetailOrFallback(projectId: string, unitId: string) {
+  const explicitDetail = getUnitDetailById(unitId);
+  if (explicitDetail) {
+    return explicitDetail;
+  }
+
+  const unit = getProjectUnit(projectId, unitId);
+  if (!unit) {
+    return undefined;
+  }
+
+  // Fallback keeps existing unit links valid even when full per-unit data is not added yet.
+  return {
+    unitId: unit.id,
+    clientName: unit.name,
+    ownerName: "Project Team",
+    ownerEmail: "team@kodu.demo",
+    ownerPhone: "+372 5550 0000",
+    recentMessages: [],
+    style: unit.packageName,
+    flooring: "Pending",
+    bathroom: "Pending",
+    kitchen: "Pending",
+    files: [],
+    quickUploads: ["Floor Plan", "Electrical", "Plumbing"],
+    notes: "Detailed unit configuration is pending and will be synced from the design team input.",
+  } satisfies UnitDetail;
 }
