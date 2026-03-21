@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 import {
   developerProjects,
   getDeveloperProjectById,
+  getDeveloperProjectDetailById,
   getProjectUnit,
-  getUnitDetailById,
+  getUnitDetailOrFallback,
 } from "@/lib/mockData";
 
 type UnitDetailPageProps = {
@@ -21,15 +22,12 @@ type UnitDetailPageProps = {
 
 export function generateStaticParams() {
   return developerProjects.flatMap((project) => {
-    const units = project.id === "proj-iseara-lutsu"
-      ? ["unit-2-9", "unit-2-12", "unit-3-5", "unit-4-8", "unit-1-3", "unit-1-5"]
-      : project.id === "proj-tammeka"
-        ? ["unit-t-1", "unit-t-2"]
-        : ["unit-r-1", "unit-r-2"];
+    const details = getDeveloperProjectDetailById(project.id);
+    const units = details?.units ?? [];
 
-    return units.map((unitId) => ({
+    return units.map((unit) => ({
       projectId: project.id,
-      unitId,
+      unitId: unit.id,
     }));
   });
 }
@@ -49,7 +47,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
   const { projectId, unitId } = await params;
   const project = getDeveloperProjectById(projectId);
   const unit = getProjectUnit(projectId, unitId);
-  const detail = getUnitDetailById(unitId);
+  const detail = getUnitDetailOrFallback(projectId, unitId);
 
   if (!project || !unit || !detail) {
     notFound();

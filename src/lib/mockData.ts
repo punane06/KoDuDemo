@@ -419,3 +419,32 @@ export function getProjectUnit(projectId: string, unitId: string) {
 export function getUnitDetailById(unitId: string) {
   return unitDetails[unitId];
 }
+
+export function getUnitDetailOrFallback(projectId: string, unitId: string) {
+  const explicitDetail = getUnitDetailById(unitId);
+  if (explicitDetail) {
+    return explicitDetail;
+  }
+
+  const unit = getProjectUnit(projectId, unitId);
+  if (!unit) {
+    return undefined;
+  }
+
+  // Fallback keeps existing unit links valid even when full per-unit data is not added yet.
+  return {
+    unitId: unit.id,
+    clientName: unit.name,
+    ownerName: "Project Team",
+    ownerEmail: "team@kodu.demo",
+    ownerPhone: "+372 5550 0000",
+    recentMessages: [],
+    style: unit.packageName,
+    flooring: "Pending",
+    bathroom: "Pending",
+    kitchen: "Pending",
+    files: [],
+    quickUploads: ["Floor Plan", "Electrical", "Plumbing"],
+    notes: "Detailed unit configuration is pending and will be synced from the design team input.",
+  } satisfies UnitDetail;
+}
