@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { MessageSquare, Upload } from "lucide-react";
 
 import { AnuPanel } from "@/components/anu/anu-panel";
-import { anuText } from "@/components/anu/anu-design-system";
+import { anuControls, anuText } from "@/components/anu/anu-design-system";
 import { AnuViewFrame } from "@/components/anu/anu-view-frame";
 import {
   developerProjects,
@@ -48,10 +48,10 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
       backHref={`/anu/${projectId}`}
       actions={
         <div className="flex items-center gap-2">
-          <span className="rounded-[4px] border border-[#cfcfcf] bg-[#f5f5f5] px-2 py-0.5 text-[11px] text-[#5f5f5f]">
+          <span className={anuControls.subtlePill}>
             {unit.status}
           </span>
-          <button className="inline-flex items-center gap-1 rounded-[4px] border border-[#252525] bg-[#252525] px-2.5 py-1 text-[11px] text-white">
+          <button className={anuControls.primaryButton}>
             <MessageSquare size={11} />
             Send Message
           </button>
@@ -84,7 +84,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
 
           <AnuPanel
             title="Interior Design"
-            action={<button className="rounded-[4px] border border-[#d0d0d0] bg-[#f2f2f2] px-2 py-1 text-[11px] text-[#4e4e4e]">Edit Selection</button>}
+            action={<button className={anuControls.subtleButton}>Edit Selection</button>}
             contentClassName="space-y-2.5"
           >
             <div className="rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2.5 py-2">
@@ -113,7 +113,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
           <AnuPanel
             title="Files & Plans"
             action={
-              <button className="inline-flex items-center gap-1 rounded-[4px] border border-[#d0d0d0] bg-[#f2f2f2] px-2 py-1 text-[11px] text-[#4e4e4e]">
+              <button className={`inline-flex items-center gap-1 ${anuControls.subtleButton}`}>
                 <Upload size={11} />
                 Upload File
               </button>
@@ -126,7 +126,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
                   <p className="text-[12px] font-medium text-[#313131]">{file.title}</p>
                   <p className="text-[11px] text-[#787878]">{file.date}</p>
                 </div>
-                <button className="rounded-[4px] border border-[#d0d0d0] bg-[#f4f4f4] px-2 py-0.5 text-[11px] text-[#4f4f4f]">Download</button>
+                <button className={anuControls.subtleButton}>Download</button>
               </article>
             ))}
 
@@ -149,11 +149,11 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
             <div className="flex justify-end gap-2">
               <Link
                 href={`/anu/${projectId}`}
-                className="rounded-[4px] border border-[#d0d0d0] bg-[#f2f2f2] px-2.5 py-1 text-[11px] text-[#4e4e4e]"
+                className={anuControls.subtleButton}
               >
                 Back to project
               </Link>
-              <button className="rounded-[4px] border border-[#252525] bg-[#252525] px-2.5 py-1 text-[11px] text-white">Save Notes</button>
+              <button className={anuControls.primaryButton}>Save Notes</button>
             </div>
           </AnuPanel>
         </div>

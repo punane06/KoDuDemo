@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { BarChart3, Clock3, PenLine, Plus } from "lucide-react";
 
 import { AnuPanel } from "@/components/anu/anu-panel";
-import { anuSurface, anuText } from "@/components/anu/anu-design-system";
+import { anuControls, anuSurface, anuText } from "@/components/anu/anu-design-system";
 import { AnuViewFrame } from "@/components/anu/anu-view-frame";
 import {
   developerProjects,
@@ -41,11 +41,11 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       backHref="/anu"
       actions={
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1 rounded-[4px] border border-[#cfcfcf] bg-[#f5f5f5] px-2 py-0.5 text-[11px] text-[#5f5f5f]">
+          <span className={`inline-flex items-center gap-1 ${anuControls.subtlePill}`}>
             <Clock3 size={11} />
             {project.lastUpdated}
           </span>
-          <button className="inline-flex items-center gap-1 rounded-[4px] border border-[#252525] bg-[#252525] px-2.5 py-1 text-[11px] text-white">
+          <button className={anuControls.primaryButton}>
             <BarChart3 size={11} />
             Statistics
           </button>
@@ -56,7 +56,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         <AnuPanel
           title={detail.stageSummary}
           action={
-            <button className="inline-flex items-center gap-1 rounded-[4px] border border-[#d0d0d0] bg-[#f2f2f2] px-2 py-1 text-[11px] text-[#4e4e4e]">
+            <button className={`inline-flex items-center gap-1 ${anuControls.subtleButton}`}>
               <PenLine size={11} />
               Update Progress
             </button>
@@ -119,7 +119,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           <AnuPanel
             title={`Units (${project.unitCount})`}
             action={
-              <button className="inline-flex items-center gap-1 rounded-[4px] border border-[#252525] bg-[#252525] px-2.5 py-1 text-[11px] text-white">
+              <button className={anuControls.primaryButton}>
                 <Plus size={11} />
                 Send Message
               </button>
@@ -151,7 +151,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         <div className="flex justify-end">
           <Link
             href="/anu"
-            className="inline-flex items-center rounded-[4px] border border-[#d0d0d0] bg-[#f2f2f2] px-2.5 py-1 text-[11px] text-[#4e4e4e]"
+            className={`inline-flex items-center ${anuControls.subtleButton}`}
           >
             Back to overview
           </Link>

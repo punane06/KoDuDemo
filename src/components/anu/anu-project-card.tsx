@@ -16,14 +16,14 @@ export function AnuProjectCard({ project }: AnuProjectCardProps) {
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-[34px] font-normal leading-none text-[#262626]">{project.name}</h2>
-          <p className="mt-1 text-[28px] font-light leading-none text-[#7a7a7a]">
+          <h2 className={anuText.h2}>{project.name}</h2>
+          <p className="mt-1 text-[12px] font-light leading-none text-[#7a7a7a]">
             {project.unitCount} apartments
             <span className="mx-2 text-[#9b9b9b]">•</span>
             {project.currentStage}
           </p>
         </div>
-        <p className="text-[45px] font-normal leading-none text-[#262626]">{project.progressPercent}%</p>
+        <p className={anuText.value}>{project.progressPercent}%</p>
       </div>
 
       <div className={`mt-3 ${anuSurface.progressTrack}`}>
@@ -32,7 +32,7 @@ export function AnuProjectCard({ project }: AnuProjectCardProps) {
 
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-3">
-          <p className={`${anuText.body} inline-flex items-center gap-1.5`}>
+          <p className={`${anuText.label} inline-flex items-center gap-1.5`}>
             <AlertCircle size={14} />
             {project.pendingDesigns} pending design
           </p>
@@ -42,7 +42,7 @@ export function AnuProjectCard({ project }: AnuProjectCardProps) {
           </span>
         </div>
 
-        <p className={`${anuText.body} inline-flex items-center gap-1.5`}>
+        <p className={`${anuText.label} inline-flex items-center gap-1.5`}>
           <Clock3 size={14} />
           {project.lastUpdated}
         </p>
