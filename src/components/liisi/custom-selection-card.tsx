@@ -11,8 +11,8 @@ export function CustomSelectionCard() {
         <Sparkles size={18} />
       </span>
       <span>
-        <span className={`block ${liisiText.body} font-medium`}>Custom Selection</span>
-        <span className={`block ${liisiText.captionMuted}`}>Request a unique design</span>
+        <span className={`block ${liisiText.ctaTitle}`}>Custom Selection</span>
+        <span className={`block ${liisiText.ctaSubtitle}`}>Request a unique design</span>
       </span>
     </button>
   );

@@ -28,17 +28,18 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
   }
 
   return (
-    <main className="flex min-h-screen w-screen flex-col bg-black text-white">
+    <main className="flex min-h-screen w-screen flex-col bg-[#f3f3f3] text-[#2e2e2e]">
       <LiisiHeader
-        title="Progress Gallery"
+        title="Latest News"
         subtitle={`${activeIndex + 1} of ${total}`}
-        backHref="/liisi"
+        closeHref="/liisi"
         variant="inner"
       />
 
-      <section className="relative flex flex-1 items-center justify-center px-0">
-        <div className="relative h-[42vh] w-full overflow-hidden bg-zinc-950">
+      <section className="relative flex items-center justify-center px-0 py-3">
+        <div className="relative h-[42vh] w-full overflow-hidden bg-white">
           <Image
+            key={activePhoto.id}
             src={activePhoto.url}
             alt={activePhoto.title}
             fill
@@ -67,7 +68,21 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
         </button>
       </section>
 
-      <section className="px-6 pb-6 pt-8">
+      <section className="space-y-4 px-6 pb-8 pt-4">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="rounded-full bg-[#234b50] px-4 py-1 text-[12px] font-medium text-white">
+              {activePhoto.category}
+            </span>
+            <span className="rounded-full bg-[#FACC58] px-4 py-1 text-[12px] font-medium text-[#2e2e2e]">
+              {activePhoto.date}
+            </span>
+          </div>
+
+          <h2 className="text-[34px] font-medium leading-tight text-[#2e4b52]">{activePhoto.title}</h2>
+          <p className="text-[14px] leading-relaxed text-[#4f666b]">{activePhoto.description}</p>
+        </div>
+
         <div className="flex gap-3 overflow-x-auto pb-1">
           {photos.map((photo, index) => {
             const isActive = index === activeIndex;
@@ -79,7 +94,7 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
                 onClick={() => setActiveIndex(index)}
                 className={[
                   "relative h-16 w-16 shrink-0 cursor-pointer overflow-hidden rounded-2xl border transition",
-                  isActive ? "opacity-100" : "border-white/15 opacity-80 hover:opacity-100",
+                  isActive ? "opacity-100" : "border-[#cfd6d8] opacity-90 hover:opacity-100",
                 ].join(" ")}
                 style={
                   isActive
@@ -93,6 +108,7 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
                 aria-pressed={isActive}
               >
                 <Image
+                  key={photo.id}
                   src={photo.url}
                   alt={photo.title}
                   fill

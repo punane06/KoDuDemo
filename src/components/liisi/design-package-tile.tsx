@@ -15,8 +15,8 @@ export function DesignPackageTile({
   imageUrl,
 }: DesignPackageTileProps) {
   return (
-    <article className={liisiSurface.card}>
-      <div className="relative h-36 w-full">
+    <article className={`${liisiSurface.cardCompact} overflow-hidden`}>
+      <div className="relative h-[136px] w-full">
         <Image
           src={imageUrl}
           alt={title}
@@ -26,14 +26,13 @@ export function DesignPackageTile({
         />
       </div>
 
-      <div className="space-y-1 px-3 py-2.5">
+      <div className="space-y-1 px-3 py-2">
         <p className={liisiText.labelSoft}>{packageLabel}</p>
-        <h3 className={liisiText.cardTitle}>{title}</h3>
-        <div className="space-y-1 pt-1">
+        <h3 className={liisiText.bodyPlus}>{title}</h3>
+        <div className="space-y-0.5 pt-0.5">
           <p className={`${liisiState.badge}`}>
             {tags[0]}
           </p>
-          <p className="block" />
           <p className={`${liisiState.badge}`}>
             {tags[1]}
           </p>

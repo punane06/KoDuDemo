@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 
 import { KoduLogo } from "@/components/brand/KoduLogo";
 import { liisiControls, liisiSurface, liisiText } from "@/components/liisi/liisi-design-system";
@@ -9,6 +9,7 @@ interface LiisiHeaderProps {
   title: string;
   subtitle?: string;
   backHref?: string;
+  closeHref?: string;
   rightSlot?: ReactNode;
   variant?: "home" | "inner";
 }
@@ -17,37 +18,55 @@ export function LiisiHeader({
   title,
   subtitle,
   backHref,
+  closeHref,
   rightSlot,
   variant = "home",
 }: LiisiHeaderProps) {
   const isHome = variant === "home";
+  const hasLeadingBack = !isHome && Boolean(backHref);
 
   return (
     <header className={liisiSurface.appHeader}>
-      <div
-        className={[
-          "mx-auto flex w-full max-w-sm items-center justify-between gap-3 px-4 sm:px-6",
-          isHome ? "py-6" : "py-4",
-        ].join(" ")}
-      >
-        <div className="flex min-w-0 items-start gap-2">
-          {backHref ? (
-            <Link href={backHref} aria-label="Back to home" className={`${liisiControls.backButton} text-[#FACC58]`}>
-              <ArrowLeft size={18} />
-            </Link>
-          ) : null}
-
+      {isHome ? (
+        <div className="mx-auto flex w-full max-w-sm items-center justify-between gap-3 px-4 py-6 sm:px-6">
           <div className="min-w-0">
             {subtitle ? <p className={liisiText.appHeaderEyebrow}>{subtitle}</p> : null}
-            <h1 className={isHome ? liisiText.appHeaderTitle : liisiText.appHeaderTitleCompact}>{title}</h1>
+            <h1 className={liisiText.appHeaderTitle}>{title}</h1>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-2">
+            {rightSlot}
+            <KoduLogo variant="default" className="h-10 w-auto" />
           </div>
         </div>
+      ) : (
+        <div className="mx-auto w-full max-w-sm px-4 py-4 sm:px-6">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-2">
+              {hasLeadingBack ? (
+                <Link href={backHref!} aria-label="Back to home" className={`${liisiControls.backButton} text-[#FACC58]`}>
+                  <ArrowLeft size={18} />
+                </Link>
+              ) : null}
+              <h1 className={liisiText.appHeaderTitleCompact}>{title}</h1>
+            </div>
 
-        <div className="flex shrink-0 items-center gap-2">
-          {rightSlot}
-          <KoduLogo variant="default" className={isHome ? "h-10 w-auto" : "h-8 w-auto"} />
+            <div className="shrink-0">
+              {closeHref ? (
+                <Link href={closeHref} aria-label="Close gallery" className={liisiControls.closeButton}>
+                  <X size={18} />
+                </Link>
+              ) : (
+                rightSlot
+              )}
+            </div>
+          </div>
+
+          {subtitle ? (
+            <p className={`${hasLeadingBack ? "pl-8" : "pl-0"} ${liisiText.appHeaderSubtitle}`}>{subtitle}</p>
+          ) : null}
         </div>
-      </div>
+      )}
     </header>
   );
 }

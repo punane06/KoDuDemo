@@ -49,7 +49,9 @@ export const liisiText = {
   appHeaderEyebrow: "text-[12px] text-[#f1d88a]",
   appHeaderTitle: "font-['Bell_MT',Georgia,serif] text-[36px] leading-[1] text-[#FACC58]",
   appHeaderTitleCompact: "text-[20px] font-medium leading-tight text-[#FACC58]",
-  appHeaderSubtitle: "text-[12px] text-[#cfdde0]",
+  appHeaderSubtitle: "text-[13px] text-[#d5e1e3]",
+  ctaTitle: "text-[28px] font-medium text-white",
+  ctaSubtitle: "text-[12px] text-[#bdd0d3]",
 } as const;
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -137,14 +139,16 @@ export const liisiControls = {
 
   // Back button
   backButton: "rounded-full p-1 text-[#2b2b2b] hover:bg-[#f0f0f0] transition-colors",
+  closeButton:
+    "inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#FACC58] text-[#20464b] transition-colors hover:bg-[#f5bd2f]",
 
   // State modifiers
   disabled: "cursor-not-allowed opacity-60",
   loading: "opacity-75",
 
   // Custom CTA (golden)
-  customCta: "flex w-full items-center gap-3 rounded-[18px] border border-dashed border-[#d3d3d3] bg-white px-4 py-4 text-left shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:bg-[#f9f9f9] transition-colors",
-  customCtaIcon: "flex h-12 w-12 items-center justify-center rounded-xl bg-[#cfb682] text-white",
+  customCta: "flex w-full items-center gap-3 rounded-[14px] border border-[#23454a] bg-[#20464b] px-4 py-4 text-left shadow-[0_2px_6px_rgba(0,0,0,0.12)] transition-colors hover:bg-[#1d3f43]",
+  customCtaIcon: "flex h-12 w-12 items-center justify-center rounded-xl bg-[#FACC58] text-[#223F43]",
 
   // Floating chat action (replaces bottom nav)
   chatFab:
@@ -171,7 +175,7 @@ export const liisiState = {
 
   // Selection indicators
   selected: "border-2 border-[#FACC58]",
-  notSelected: "rounded-full bg-[#f5f3f0] px-3 py-1 text-[12px] font-light text-[#6b6b6b]",
+  notSelected: "rounded-full bg-[#FACC58] px-3 py-1 text-[12px] font-medium text-[#2b2b2b]",
 } as const;
 
 // ═══════════════════════════════════════════════════════════════════════════
