@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { BarChart3, Clock3, PenLine, Plus } from "lucide-react";
 
 import { AnuPanel } from "@/components/anu/anu-panel";
-import { anuControls, anuSurface, anuText } from "@/components/anu/anu-design-system";
+import { anuControls, anuState, anuSurface, anuText } from "@/components/anu/anu-design-system";
 import { AnuViewFrame } from "@/components/anu/anu-view-frame";
 import {
   developerProjects,
@@ -35,6 +35,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     notFound();
   }
 
+  const fallbackUpdateImageUrl = "/kodu-developer-svg-03.svg";
+
   return (
     <AnuViewFrame
       title={project.name}
@@ -45,7 +47,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             <Clock3 size={11} />
             {project.lastUpdated}
           </span>
-          <button className={anuControls.primaryButtonCompact}>
+          <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
             <BarChart3 size={10} />
             Statistics
           </button>
@@ -57,7 +59,12 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           title={detail.stageSummary}
           titleClassName={anuText.panelHeading}
           action={
-            <button className={`inline-flex items-center gap-1 ${anuControls.subtleButtonCompact}`}>
+            <button
+              type="button"
+              className={`inline-flex items-center gap-1 ${anuControls.subtleButtonCompact} ${anuControls.disabled}`}
+              disabled
+              title="Coming soon"
+            >
               <PenLine size={10} />
               Update Progress
             </button>
@@ -71,10 +78,10 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 <div key={stage.id} className="flex flex-col items-center gap-1">
                   <span
                     className={cn(
-                      "flex h-6 w-6 items-center justify-center rounded-full border text-[9px]",
-                      stage.done && "border-[#35595f] bg-[#35595f] text-white",
-                      stage.current && "border-[#e2bc50] bg-[#e2bc50] text-[#2f2f2f]",
-                      !stage.done && !stage.current && "border-[#d4d4d4] bg-[#ececec] text-[#8a8a8a]"
+                      "flex h-6 w-6 items-center justify-center rounded-full border text-[11px]",
+                      stage.done && anuState.stageDone,
+                      stage.current && anuState.stageCurrent,
+                      !stage.done && !stage.current && anuState.stageTodo
                     )}
                   >
                     {stage.label.slice(0, 1)}
@@ -100,9 +107,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         <div className="grid gap-3 xl:grid-cols-[1.1fr_0.9fr]">
           <AnuPanel title="Project Updates" contentClassName="space-y-2">
             {recentUpdates.map((update, index) => (
-              <article key={update.id} className="grid grid-cols-[44px_1fr_auto] items-start gap-2 rounded-[8px] border border-[#dfdfdf] bg-[#f9f9f9] p-1.5">
+              <article key={update.id} className={`grid grid-cols-[44px_1fr_auto] items-start gap-2 ${anuSurface.panelInset} p-1.5`}>
                 <Image
-                  src={detail.photoUrls[index % detail.photoUrls.length]}
+                  src={detail.photoUrls.length > 0 ? detail.photoUrls[index % detail.photoUrls.length] : fallbackUpdateImageUrl}
                   alt={update.title}
                   width={44}
                   height={34}
@@ -120,14 +127,14 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           <AnuPanel
             title={`Units (${project.unitCount})`}
             action={
-              <button className={anuControls.primaryButtonCompact}>
+              <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
                 <Plus size={10} />
                 Send Message
               </button>
             }
             contentClassName="space-y-1.5"
           >
-            <div className="grid grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr] rounded-[6px] border border-[#dfdfdf] bg-[#f3f3f3] px-2 py-1 text-[9px] uppercase tracking-[0.06em] text-[#727272]">
+            <div className={`grid grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr] ${anuSurface.mutedRow} px-2 py-1 ${anuText.tableHeading}`}>
               <p>Unit ID</p>
               <p>Status</p>
               <p>Design</p>
@@ -138,7 +145,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               <Link
                 key={unit.id}
                 href={`/anu/${project.id}/${unit.id}`}
-                className="grid grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr] items-center rounded-[6px] border border-[#e0e0e0] bg-[#fafafa] px-2 py-1 text-[10px] text-[#383838] transition-colors hover:bg-[#f2f2f2]"
+                className={`grid grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr] items-center ${anuSurface.softRow} px-2 py-1 ${anuText.tableCell} transition-colors hover:bg-[#f2f2f2]`}
               >
                 <p>{unit.name}</p>
                 <p className="text-[#6a6a6a]">{unit.status}</p>

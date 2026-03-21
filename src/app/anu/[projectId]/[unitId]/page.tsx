@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { MessageSquare, Upload } from "lucide-react";
 
 import { AnuPanel } from "@/components/anu/anu-panel";
-import { anuControls, anuText } from "@/components/anu/anu-design-system";
+import { anuControls, anuSurface, anuText } from "@/components/anu/anu-design-system";
 import { AnuViewFrame } from "@/components/anu/anu-view-frame";
 import {
   developerProjects,
@@ -51,7 +51,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
           <span className={anuControls.subtlePillCompact}>
             {unit.status}
           </span>
-          <button className={anuControls.primaryButtonCompact}>
+          <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
             <MessageSquare size={10} />
             Send Message
           </button>
@@ -61,18 +61,18 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
       <div className="space-y-2.5">
         <div className="grid gap-2.5 lg:grid-cols-[1.04fr_0.96fr]">
           <AnuPanel title="Client" titleClassName={anuText.panelHeading} contentClassName="space-y-2">
-            <div className="rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2.5 py-1.5 text-[11px] text-[#565656]">
+            <div className={`${anuSurface.panelInset} px-2.5 py-1.5 text-[11px] text-[#565656]`}>
               <p className={anuText.fieldValue}>{detail.clientName}</p>
               <p className="mt-1">Owner: {detail.ownerName}</p>
               <p>Email: {detail.ownerEmail}</p>
               <p>Phone: {detail.ownerPhone}</p>
             </div>
 
-            <div className="rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] p-2">
+            <div className={`${anuSurface.panelInset} p-2`}>
               <p className={`mb-1.5 ${anuText.panelHeading}`}>Recent Messages</p>
               <div className="space-y-1.5">
                 {detail.recentMessages.length > 0 ? detail.recentMessages.map((message) => (
-                  <article key={message.id} className="rounded-[6px] border border-[#e3e3e3] bg-[#f6f6f6] p-1.5">
+                  <article key={message.id} className={`${anuSurface.softRow} p-1.5`}>
                     <p className={anuText.itemTitle}>{message.author}</p>
                     <p className={anuText.itemBody}>{message.text}</p>
                     <p className={`mt-1 ${anuText.tiny}`}>{message.time}</p>
@@ -85,24 +85,28 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
           <AnuPanel
             title="Interior Design"
             titleClassName={anuText.panelHeading}
-            action={<button className={anuControls.subtleButtonCompact}>Edit Selection</button>}
+            action={
+              <button type="button" className={`${anuControls.subtleButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+                Edit Selection
+              </button>
+            }
             contentClassName="space-y-2"
           >
-            <div className="rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2 py-1.5">
+            <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
               <p className={anuText.micro}>Style</p>
               <p className={`mt-1 ${anuText.fieldValue}`}>{detail.style}</p>
             </div>
 
             <div className="grid gap-1.5 sm:grid-cols-3">
-              <div className="rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2 py-1.5">
+              <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
                 <p className={anuText.micro}>Flooring</p>
                 <p className={`mt-1 ${anuText.fieldValue}`}>{detail.flooring}</p>
               </div>
-              <div className="rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2 py-1.5">
+              <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
                 <p className={anuText.micro}>Bathroom</p>
                 <p className={`mt-1 ${anuText.fieldValue}`}>{detail.bathroom}</p>
               </div>
-              <div className="rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2 py-1.5">
+              <div className={`${anuSurface.panelInset} px-2 py-1.5`}>
                 <p className={anuText.micro}>Kitchen</p>
                 <p className={`mt-1 ${anuText.fieldValue}`}>{detail.kitchen}</p>
               </div>
@@ -115,7 +119,12 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
             title="Files & Plans"
             titleClassName={anuText.panelHeading}
             action={
-              <button className={`inline-flex items-center gap-1 ${anuControls.subtleButtonCompact}`}>
+              <button
+                type="button"
+                className={`inline-flex items-center gap-1 ${anuControls.subtleButtonCompact} ${anuControls.disabled}`}
+                disabled
+                title="Coming soon"
+              >
                 <Upload size={10} />
                 Upload File
               </button>
@@ -123,12 +132,14 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
             contentClassName="space-y-1.5"
           >
             {detail.files.map((file) => (
-              <article key={file.id} className="flex items-center justify-between rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2 py-1.5">
+              <article key={file.id} className={`flex items-center justify-between ${anuSurface.panelInset} px-2 py-1.5`}>
                 <div>
                   <p className={anuText.itemTitle}>{file.title}</p>
                   <p className={anuText.itemBody}>{file.date}</p>
                 </div>
-                <button className={anuControls.subtleButtonCompact}>Download</button>
+                <button type="button" className={`${anuControls.subtleButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+                  Download
+                </button>
               </article>
             ))}
 
@@ -144,7 +155,7 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
           </AnuPanel>
 
           <AnuPanel title="Unit Notes" titleClassName={anuText.panelHeading} contentClassName="space-y-2">
-            <div className="min-h-24 rounded-[8px] border border-[#dddddd] bg-[#fbfbfb] px-2 py-1.5 text-[11px] text-[#666666]">
+            <div className={`min-h-24 ${anuSurface.panelInset} px-2 py-1.5 text-[11px] text-[#666666]`}>
               {detail.notes}
             </div>
 
@@ -155,7 +166,9 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
               >
                 Back to project
               </Link>
-              <button className={anuControls.primaryButtonCompact}>Save Notes</button>
+              <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
+                Save Notes
+              </button>
             </div>
           </AnuPanel>
         </div>
