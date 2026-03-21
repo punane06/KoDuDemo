@@ -29,7 +29,9 @@ export function AnuViewFrame({ title, backHref, actions, children }: AnuViewFram
           </div>
 
           <div className="justify-self-center">
-            <KoduLogo variant="developer" className="h-5 w-auto" />
+            <Link href="/anu">
+              <KoduLogo variant="developer" className="h-5 w-auto" />
+            </Link>
           </div>
 
           <div className="justify-self-end">{actions}</div>
