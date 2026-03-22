@@ -1,4 +1,5 @@
 import { CalendarDays, Download, FileText } from "lucide-react";
+import Link from "next/link";
 
 import { LiisiHeader } from "@/components/liisi/liisi-header";
 import { LiisiChatFab } from "@/components/liisi/liisi-chat-fab";
@@ -64,9 +65,13 @@ export default function LiisiFilesPage() {
                     <div className="flex flex-wrap items-center gap-2">
                       <p className="truncate text-[16px] font-medium text-[#2d2d2d]">{file.title}</p>
                       {file.interactive ? (
-                        <span className="inline-flex items-center rounded-full border border-[#d3a95a] bg-[#f6efe3] px-2 py-0.5 text-[11px] text-[#c08a2b]">
+                        <Link
+                          href="/liisi/files/floor-plan"
+                          aria-label="Open interactive floor plan"
+                          className="inline-flex items-center rounded-full border border-[#d3a95a] bg-[#f6efe3] px-2 py-0.5 text-[11px] text-[#c08a2b]"
+                        >
                           Interactive
-                        </span>
+                        </Link>
                       ) : null}
                     </div>
 

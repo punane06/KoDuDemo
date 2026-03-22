@@ -36,7 +36,7 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
         variant="inner"
       />
 
-      <section className="relative flex items-center justify-center px-0 py-3">
+      <section className="relative flex items-center justify-center px-0 pb-3 pt-0">
         <div className="relative h-[42vh] w-full overflow-hidden bg-white">
           <Image
             key={activePhoto.id}

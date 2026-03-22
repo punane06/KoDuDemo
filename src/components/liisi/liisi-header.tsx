@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowLeft, X } from "lucide-react";
+import { ChevronLeft, X } from "lucide-react";
 
 import { KoduLogo } from "@/components/brand/KoduLogo";
 import { liisiControls, liisiSurface, liisiText } from "@/components/liisi/liisi-design-system";
@@ -11,7 +11,7 @@ interface LiisiHeaderProps {
   backHref?: string;
   closeHref?: string;
   rightSlot?: ReactNode;
-  variant?: "home" | "inner";
+  variant?: "home" | "inner" | "inner-viewer";
 }
 
 export function LiisiHeader({
@@ -23,11 +23,14 @@ export function LiisiHeader({
   variant = "home",
 }: LiisiHeaderProps) {
   const isHome = variant === "home";
+  const isViewer = variant === "inner-viewer";
   const hasLeadingBack = !isHome && Boolean(backHref);
   const headerClassName = liisiSurface.appHeader;
-  const backClassName = `${liisiControls.backButton} text-[#FACC58]`;
-  const titleClassName = liisiText.appHeaderTitleCompact;
-  const subtitleClassName = liisiText.appHeaderSubtitle;
+  const backClassName = isViewer ? `${liisiControls.backButton} text-[#f0f0f0]` : `${liisiControls.backButton} text-[#FACC58]`;
+  const titleClassName = isViewer
+    ? `${liisiText.appHeaderTitleCompact} text-[#f2f2f2]`
+    : liisiText.appHeaderTitleCompact;
+  const subtitleClassName = isViewer ? "text-[13px] text-[#9aa3a6]" : liisiText.appHeaderSubtitle;
 
   return (
     <header className={headerClassName}>
@@ -49,7 +52,7 @@ export function LiisiHeader({
             <div className="flex min-w-0 items-center gap-2">
               {hasLeadingBack ? (
                 <Link href={backHref!} aria-label="Back to home" className={backClassName}>
-                  <ArrowLeft size={18} />
+                  <ChevronLeft size={20} />
                 </Link>
               ) : null}
               <h1 className={titleClassName}>{title}</h1>

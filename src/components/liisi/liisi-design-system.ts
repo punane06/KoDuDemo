@@ -153,6 +153,11 @@ export const liisiControls = {
   // Floating chat action (replaces bottom nav)
   chatFab:
     "fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full border border-[#2c5358] bg-[#223F43] text-[#FACC58] shadow-[0_8px_18px_rgba(0,0,0,0.24)] transition-colors hover:bg-[#1e373b]",
+
+  // Viewer controls (zoom / pan related)
+  viewerFab:
+    "inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.42)] bg-[rgba(230,230,230,0.88)] text-[#222] backdrop-blur-md shadow-[0_10px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-[rgba(245,245,245,0.92)]",
+  viewerFabText: "text-[15px] font-medium",
 } as const;
 
 // ═══════════════════════════════════════════════════════════════════════════
