@@ -1,13 +1,11 @@
 "use client";
 
-import { type FormEvent, useMemo, useState, useSyncExternalStore } from "react";
+import { type FormEvent, useMemo, useState } from "react";
 import { Image as ImageIcon, SendHorizontal } from "lucide-react";
 
+import { createLocalStorageStore } from "@/lib/create-local-storage-store";
 import { LiisiHeader } from "@/components/liisi/liisi-header";
 import { liisiLayout } from "@/components/liisi/liisi-design-system";
-
-const CHAT_STORAGE_KEY = "liisi-chat-messages-v1";
-const CHAT_STORAGE_EVENT = "liisi-chat-storage";
 
 type ChatMessage = {
   id: string;
@@ -49,9 +47,6 @@ const initialChatMessages: ChatMessage[] = [
   },
 ];
 
-let cachedRawMessages: string | null = null;
-let cachedParsedMessages: ChatMessage[] = initialChatMessages;
-
 function normalizeTimestampLabel(value: string) {
   if (value.includes(",")) {
     return value;
@@ -72,75 +67,12 @@ function normalizeMessages(messages: ChatMessage[]) {
   }));
 }
 
-function readStoredMessages() {
-  if (typeof window === "undefined") {
-    return initialChatMessages;
-  }
-
-  const persisted = localStorage.getItem(CHAT_STORAGE_KEY);
-
-  if (persisted === cachedRawMessages) {
-    return cachedParsedMessages;
-  }
-
-  if (!persisted) {
-    cachedRawMessages = null;
-    cachedParsedMessages = initialChatMessages;
-    return initialChatMessages;
-  }
-
-  try {
-    const parsed = JSON.parse(persisted) as ChatMessage[];
-    if (Array.isArray(parsed) && parsed.length > 0) {
-      const normalized = normalizeMessages(parsed);
-      cachedRawMessages = persisted;
-      cachedParsedMessages = normalized;
-      return normalized;
-    }
-  } catch {
-    // Ignore malformed localStorage payloads and keep defaults.
-  }
-
-  cachedRawMessages = null;
-  cachedParsedMessages = initialChatMessages;
-  return initialChatMessages;
-}
-
-function getServerMessages() {
-  return initialChatMessages;
-}
-
-function subscribeToChatMessages(onStoreChange: () => void) {
-  if (typeof window === "undefined") {
-    return () => undefined;
-  }
-
-  function handleStorage(event: StorageEvent) {
-    if (event.key === CHAT_STORAGE_KEY) {
-      onStoreChange();
-    }
-  }
-
-  function handleLocalChange() {
-    onStoreChange();
-  }
-
-  window.addEventListener("storage", handleStorage);
-  window.addEventListener(CHAT_STORAGE_EVENT, handleLocalChange);
-
-  return () => {
-    window.removeEventListener("storage", handleStorage);
-    window.removeEventListener(CHAT_STORAGE_EVENT, handleLocalChange);
-  };
-}
-
-function persistMessages(messages: ChatMessage[]) {
-  const serialized = JSON.stringify(messages);
-  cachedRawMessages = serialized;
-  cachedParsedMessages = messages;
-  localStorage.setItem(CHAT_STORAGE_KEY, serialized);
-  window.dispatchEvent(new Event(CHAT_STORAGE_EVENT));
-}
+const chatStore = createLocalStorageStore<ChatMessage[]>({
+  key: "liisi-chat-messages-v1",
+  eventName: "liisi-chat-storage",
+  initialValue: initialChatMessages,
+  transform: normalizeMessages,
+});
 
 function getCurrentTimeLabel() {
   return new Date().toLocaleString("en-US", {
@@ -153,7 +85,7 @@ function getCurrentTimeLabel() {
 }
 
 export default function LiisiChatPage() {
-  const messages = useSyncExternalStore(subscribeToChatMessages, readStoredMessages, getServerMessages);
+  const messages = chatStore.useValue();
   const [draft, setDraft] = useState("");
 
   const canSend = useMemo(() => draft.trim().length > 0, [draft]);
@@ -170,7 +102,7 @@ export default function LiisiChatPage() {
       time: getCurrentTimeLabel(),
     };
 
-    persistMessages([...messages, nextMessage]);
+    chatStore.setValue([...messages, nextMessage]);
     setDraft("");
   }
 
