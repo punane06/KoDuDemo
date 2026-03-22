@@ -39,5 +39,6 @@ describe("Liisi Design Page", () => {
 
     const backButton = screen.getByLabelText(/Back to home/i);
     expect(backButton).toBeInTheDocument();
+    expect(screen.getByLabelText(/Start chat/i)).toBeInTheDocument();
   });
 });

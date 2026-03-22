@@ -42,6 +42,9 @@ export type GalleryPhoto = {
 export type ProgressGalleryPhoto = {
   id: string;
   title: string;
+  category: string;
+  date: string;
+  description: string;
   url: string;
 };
 
@@ -150,23 +153,39 @@ export const liisiLatestUpdate = {
 export const liisiProgressGallery: ProgressGalleryPhoto[] = [
   {
     id: "progress-001",
-    title: "Exterior overview",
-    url: "https://picsum.photos/900/1400?random=301",
+    title: "Feature wall painting completed",
+    category: "Interior",
+    date: "Mar 18",
+    description:
+      "We have completed painting your feature wall in the living room. The soft beige tone creates a warm and elegant atmosphere.",
+    url: "https://picsum.photos/seed/kodu-progress-001/900/1400",
   },
   {
     id: "progress-002",
-    title: "Interior corridor",
-    url: "https://picsum.photos/900/1400?random=302",
+    title: "Kitchen installation in progress",
+    category: "Interior",
+    date: "Mar 16",
+    description:
+      "Kitchen base units are installed and countertop templating has been completed for final fitting.",
+    url: "https://picsum.photos/seed/kodu-progress-002/900/1400",
   },
   {
     id: "progress-003",
-    title: "Worksite update",
-    url: "https://picsum.photos/900/1400?random=303",
+    title: "Bathroom tiling completed",
+    category: "Interior",
+    date: "Mar 14",
+    description:
+      "Bathroom wall and floor tiles are now complete. Grouting and fixture installation are next.",
+    url: "https://picsum.photos/seed/kodu-progress-003/900/1400",
   },
   {
     id: "progress-004",
-    title: "Landscape progress",
-    url: "https://picsum.photos/900/1400?random=304",
+    title: "Electrical finalization stage",
+    category: "Technical",
+    date: "Mar 12",
+    description:
+      "Switches, sockets and lighting points are being finalized across all completed interior zones.",
+    url: "https://picsum.photos/seed/kodu-progress-004/900/1400",
   },
 ];
 

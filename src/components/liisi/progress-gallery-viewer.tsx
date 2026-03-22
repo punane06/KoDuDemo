@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import type { ProgressGalleryPhoto } from "@/lib/mockData";
 import { liisiColors } from "@/components/liisi/liisi-design-system";
+import { LiisiHeader } from "@/components/liisi/liisi-header";
+import { LiisiChatFab } from "@/components/liisi/liisi-chat-fab";
 
 interface ProgressGalleryViewerProps {
   photos: ProgressGalleryPhoto[];
@@ -27,26 +28,18 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
   }
 
   return (
-    <main className="flex min-h-screen w-screen flex-col bg-black text-white">
-      <header className="flex items-start justify-between px-6 pt-12 pb-6">
-        <div>
-          <h1 className="text-2xl font-medium">Progress Gallery</h1>
-          <p className="mt-1 text-sm text-white/60">
-            {activeIndex + 1} of {total}
-          </p>
-        </div>
-        <Link
-          href="/liisi"
-          aria-label="Close gallery"
-          className="rounded-full p-2 text-white/80 transition hover:bg-white/10 hover:text-white"
-        >
-          <X size={22} />
-        </Link>
-      </header>
+    <main className="flex min-h-screen w-screen flex-col bg-[#f3f3f3] text-[#2e2e2e]">
+      <LiisiHeader
+        title="Latest News"
+        subtitle={`${activeIndex + 1} of ${total}`}
+        closeHref="/liisi"
+        variant="inner"
+      />
 
-      <section className="relative flex flex-1 items-center justify-center px-0">
-        <div className="relative h-[42vh] w-full overflow-hidden bg-zinc-950">
+      <section className="relative flex items-center justify-center px-0 pb-3 pt-0">
+        <div className="relative h-[42vh] w-full overflow-hidden bg-white">
           <Image
+            key={activePhoto.id}
             src={activePhoto.url}
             alt={activePhoto.title}
             fill
@@ -75,7 +68,21 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
         </button>
       </section>
 
-      <section className="px-6 pb-6 pt-8">
+      <section className="space-y-4 px-6 pb-8 pt-4">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="rounded-full bg-[#234b50] px-4 py-1 text-[12px] font-medium text-white">
+              {activePhoto.category}
+            </span>
+            <span className="rounded-full bg-[#FACC58] px-4 py-1 text-[12px] font-medium text-[#2e2e2e]">
+              {activePhoto.date}
+            </span>
+          </div>
+
+          <h2 className="text-[34px] font-medium leading-tight text-[#2e4b52]">{activePhoto.title}</h2>
+          <p className="text-[14px] leading-relaxed text-[#4f666b]">{activePhoto.description}</p>
+        </div>
+
         <div className="flex gap-3 overflow-x-auto pb-1">
           {photos.map((photo, index) => {
             const isActive = index === activeIndex;
@@ -87,14 +94,21 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
                 onClick={() => setActiveIndex(index)}
                 className={[
                   "relative h-16 w-16 shrink-0 cursor-pointer overflow-hidden rounded-2xl border transition",
-                  isActive
-                    ? `border-[${liisiColors.accent}] ring-2 ring-[${liisiColors.accent}]/30`
-                    : "border-white/15 opacity-80 hover:opacity-100",
+                  isActive ? "opacity-100" : "border-[#cfd6d8] opacity-90 hover:opacity-100",
                 ].join(" ")}
+                style={
+                  isActive
+                    ? {
+                        borderColor: liisiColors.accent,
+                        boxShadow: `0 0 0 2px ${liisiColors.accent}4D`,
+                      }
+                    : undefined
+                }
                 aria-label={`Open ${photo.title}`}
                 aria-pressed={isActive}
               >
                 <Image
+                  key={photo.id}
                   src={photo.url}
                   alt={photo.title}
                   fill
@@ -106,6 +120,8 @@ export function ProgressGalleryViewer({ photos }: ProgressGalleryViewerProps) {
           })}
         </div>
       </section>
+
+      <LiisiChatFab />
     </main>
   );
 }

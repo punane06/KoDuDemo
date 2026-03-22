@@ -3,7 +3,17 @@ import React from "react";
 import { vi } from "vitest";
 
 vi.mock("next/image", () => ({
-  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => React.createElement("img", props),
+  default: (
+    props: React.ImgHTMLAttributes<HTMLImageElement> & {
+      fill?: boolean;
+      priority?: boolean;
+    }
+  ) => {
+    const imgProps = { ...props };
+    delete imgProps.fill;
+    delete imgProps.priority;
+    return React.createElement("img", imgProps);
+  },
 }));
 
 vi.mock("next/link", () => ({
