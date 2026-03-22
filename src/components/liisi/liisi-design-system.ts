@@ -51,6 +51,8 @@ export const liisiText = {
   appHeaderTitleCompact: "text-[20px] font-medium leading-tight text-[#FACC58]",
   appHeaderSubtitle: "text-[13px] text-[#d5e1e3]",
   ctaTitle: "text-[28px] font-medium text-white",
+  ctaTitleCompact: "text-[22px] font-medium leading-tight text-white",
+  ctaTitleSmall: "text-[18px] font-medium leading-tight text-white",
   ctaSubtitle: "text-[12px] text-[#bdd0d3]",
 } as const;
 
@@ -192,6 +194,7 @@ export const liisiLayout = {
   containerWidth: "w-full max-w-sm",
   pageMargin: "px-4 sm:px-6",
   pageVerticalMargin: "pt-5 pb-24",
+  contentBottomPadding: "pb-8",
 
   // Spacing
   sectionGap: "space-y-4",

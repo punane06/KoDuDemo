@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { liisiText, liisiSurface, liisiState } from "@/components/liisi/liisi-design-system";
 
 interface DesignPackageTileProps {
@@ -6,6 +7,8 @@ interface DesignPackageTileProps {
   title: string;
   tags: [string, string];
   imageUrl: string;
+  href?: string;
+  selected?: boolean;
 }
 
 export function DesignPackageTile({
@@ -13,9 +16,11 @@ export function DesignPackageTile({
   title,
   tags,
   imageUrl,
+  href,
+  selected = false,
 }: DesignPackageTileProps) {
-  return (
-    <article className={`${liisiSurface.cardCompact} overflow-hidden`}>
+  const cardMedia = (
+    <>
       <div className="relative h-[136px] w-full">
         <Image
           src={imageUrl}
@@ -37,6 +42,35 @@ export function DesignPackageTile({
             {tags[1]}
           </p>
         </div>
+      </div>
+    </>
+  );
+
+  return (
+    <article className={`${liisiSurface.cardCompact} relative overflow-hidden ${selected ? "ring-2 ring-[#FACC58]" : ""}`}>
+      {selected ? (
+        <span className="absolute right-2 top-2 z-10 rounded-full bg-[#20464b] px-2 py-1 text-[10px] font-medium text-[#f3f3f2]">
+          Selected
+        </span>
+      ) : null}
+      {href ? <Link href={href}>{cardMedia}</Link> : cardMedia}
+
+      <div className="flex items-center justify-between gap-2 border-t border-[#ece7df] px-3 py-3">
+        {href ? (
+          <Link href={href} className="text-[11px] font-medium text-[#7f7b74] hover:text-[#4d4a45]">
+            View details
+          </Link>
+        ) : (
+          <span className="text-[11px] text-[#9b9790]">Package overview</span>
+        )}
+
+        {selected ? (
+          <span className="rounded-full bg-[#dfe6df] px-3 py-1.5 text-[11px] font-medium text-[#56705b]">
+            Selected
+          </span>
+        ) : (
+          <span className="text-[11px] text-[#9b9790]">Review package</span>
+        )}
       </div>
     </article>
   );
