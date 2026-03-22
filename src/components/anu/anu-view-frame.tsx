@@ -13,28 +13,33 @@ type AnuViewFrameProps = {
 };
 
 export function AnuViewFrame({ title, backHref, actions, children }: AnuViewFrameProps) {
+  // Example: these values should come from props or context in a real app
+  const unitCount = 24;
   return (
     <main className={`min-h-screen w-full ${anuSurface.appBackground}`}>
-      <header className={`w-full border-b border-[#c8d1d6] ${anuSurface.headerBar}`}>
-        <div className="mx-auto grid h-[42px] w-full max-w-[1180px] grid-cols-[1fr_auto_1fr] items-center px-4 sm:px-6">
-          <div className="justify-self-start">
+      <header className="w-full border-b border-[#c8d1d6] bg-[#e6ebee]">
+        <div className="mx-auto flex h-[56px] w-full max-w-[1180px] items-center justify-between px-4 sm:px-6">
+          <div className="flex items-center gap-2 min-w-0">
             {backHref ? (
-              <Link href={backHref} className="inline-flex items-center gap-1.5 text-[12px] text-[#2e2e2e]">
-                <ArrowLeft size={12} />
-                <span className="truncate">{title}</span>
+              <Link href={backHref} className="inline-flex items-center gap-1.5 text-[15px] text-[#2e2e2e]">
+                <ArrowLeft size={18} />
+                <span className="truncate font-medium">{title}</span>
               </Link>
             ) : (
-              <p className="truncate text-[12px] text-[#2e2e2e]">{title}</p>
+              <p className="truncate text-[15px] text-[#2e2e2e] font-medium">{title}</p>
             )}
           </div>
-
-          <div className="justify-self-center">
-            <Link href="/anu">
-              <KoduLogo variant="developer" className="h-5 w-auto" />
-            </Link>
+          <div className="flex flex-col items-center flex-1">
+            <KoduLogo variant="developer" className="h-7 w-auto" />
           </div>
-
-          <div className="justify-self-end">{actions}</div>
+          <div className="flex items-center gap-3">
+            <span className="rounded bg-white border border-[#d2d2d2] px-2 py-0.5 text-[12px] text-[#223f43] font-medium">{unitCount} units</span>
+            <button className="flex items-center gap-1 rounded bg-white border border-[#d2d2d2] px-2 py-0.5 text-[12px] text-[#223f43] font-medium">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3v18h18" /></svg>
+              Statistics
+            </button>
+            {actions}
+          </div>
         </div>
       </header>
 

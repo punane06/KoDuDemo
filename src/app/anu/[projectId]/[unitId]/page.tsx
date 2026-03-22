@@ -48,24 +48,25 @@ export default async function UnitDetailPage({ params }: UnitDetailPageProps) {
       backHref={`/anu/${projectId}`}
       actions={
         <div className="flex items-center gap-2">
-          <span className={anuControls.subtlePillCompact}>
+          {/* <span className={anuControls.subtlePillCompact}>
             {unit.status}
           </span>
           <button type="button" className={`${anuControls.primaryButtonCompact} ${anuControls.disabled}`} disabled title="Coming soon">
             <MessageSquare size={10} />
             Send Message
-          </button>
+          </button> */}
         </div>
       }
     >
       <div className="space-y-2.5">
         <div className="grid gap-2.5 lg:grid-cols-[1.04fr_0.96fr]">
-          <AnuPanel title="Client" titleClassName={anuText.panelHeading} contentClassName="space-y-2">
+
+          <AnuPanel title="Client" titleClassName={`${anuText.panelHeading} font-bold`} contentClassName="space-y-2">
             <div className={`${anuSurface.panelInset} px-2.5 py-1.5 text-[11px] text-[#565656]`}>
               <p className={anuText.fieldValue}>{detail.clientName}</p>
-              <p className="mt-1">Owner: {detail.ownerName}</p>
-              <p>Email: {detail.ownerEmail}</p>
-              <p>Phone: {detail.ownerPhone}</p>
+              <p className="mt-1">Owner: <span className="font-bold">{detail.ownerName}</span></p>
+              <p>Email: <span className="font-bold">{detail.ownerEmail}</span></p>
+              <p>Phone: <span className="font-bold">{detail.ownerPhone}</span></p>
             </div>
 
             <div className={`${anuSurface.panelInset} p-2`}>
