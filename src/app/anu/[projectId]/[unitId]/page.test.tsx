@@ -5,7 +5,7 @@ import UnitDetailPage from "./page";
 describe("Anu unit page smoke", () => {
   it("renders with valid project and unit params", async () => {
     const element = await UnitDetailPage({
-      params: Promise.resolve({ projectId: "proj-iseara-lutsu", unitId: "unit-2-9" }),
+      params: Promise.resolve({ projectId: "proj-iseara-sipelga", unitId: "unit-14-9" }),
     });
 
     render(element);

@@ -5,7 +5,7 @@ import ProjectDetailPage from "./page";
 describe("Anu project page smoke", () => {
   it("renders with valid project params", async () => {
     const element = await ProjectDetailPage({
-      params: Promise.resolve({ projectId: "proj-iseara-lutsu" }),
+      params: Promise.resolve({ projectId: "proj-iseara-sipelga" }),
     });
 
     render(element);

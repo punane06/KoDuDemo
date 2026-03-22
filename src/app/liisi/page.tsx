@@ -74,7 +74,7 @@ export default function LiisiPage() {
         </div>
 
         {/* Floor Plan */}
-        <div className=" mb-5">
+        <div className="">
           <h2 className="font-inter font-normal text-[15px] text-[#223F43] mb-2">Floor Plan</h2>
 
           <Image

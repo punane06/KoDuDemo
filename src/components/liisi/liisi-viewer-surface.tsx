@@ -25,7 +25,7 @@ export function LiisiViewerSurface({
   imageHeightClassName = "h-[300px]",
 }: LiisiViewerSurfaceProps) {
   return (
-    <div className="flex flex-1 flex-col justify-center pt-8">
+    <div className="flex flex-1 flex-col justify-center">
       <div className="w-full">
         <div className={`relative w-full overflow-hidden ${imageHeightClassName}`}>
           <div

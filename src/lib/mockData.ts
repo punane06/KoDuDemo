@@ -338,7 +338,7 @@ export const activityFeed = [
 
 export const developerProjects: DeveloperProject[] = [
   {
-    id: "proj-iseara-lutsu",
+    id: "proj-iseara-sipelga",
     name: "Sipelga Residence",
     unitCount: 24,
     currentStage: "Interior Works",
@@ -373,8 +373,8 @@ export const developerProjects: DeveloperProject[] = [
 ];
 
 export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
-  "proj-iseara-lutsu": {
-    projectId: "proj-iseara-lutsu",
+  "proj-iseara-sipelga": {
+    projectId: "proj-iseara-sipelga",
     stageSummary: "Construction Control",
     nextStage: "Finishing",
     stageDate: "Aug 15, 2026",
@@ -391,12 +391,12 @@ export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
       "https://picsum.photos/320/220?random=222",
     ],
     units: [
-      { id: "unit-2-9", name: "Iseara Lutsu 2-9", status: "Sold", designStage: "Design", packageName: "Dark and Premium", progressPercent: 58 },
-      { id: "unit-2-12", name: "Iseara Lutsu 2-12", status: "Sold", designStage: "Design", packageName: "Light and Modern" },
-      { id: "unit-3-5", name: "Iseara Lutsu 3-5", status: "Reserved", designStage: "Design", packageName: "Custom", progressPercent: 75 },
-      { id: "unit-4-8", name: "Iseara Lutsu 4-8", status: "Sold", designStage: "Design", packageName: "Custom" },
-      { id: "unit-1-3", name: "Iseara Lutsu 1-3", status: "Available", designStage: "Design", packageName: "Not Selected" },
-      { id: "unit-1-5", name: "Iseara Lutsu 1-5", status: "Sold", designStage: "Design", packageName: "Classic and Neutral" },
+      { id: "unit-14-9", name: "Iseara Sipelga 14-9", status: "Sold", designStage: "Design", packageName: "Light and Modern", progressPercent: 58 },
+      { id: "unit-2-12", name: "Iseara Sipelga 2-12", status: "Sold", designStage: "Design", packageName: "Dark and Premium" },
+      { id: "unit-3-5", name: "Iseara Sipelga 3-5", status: "Reserved", designStage: "Design", packageName: "Custom", progressPercent: 75 },
+      { id: "unit-4-8", name: "Iseara Sipelga 4-8", status: "Sold", designStage: "Design", packageName: "Custom" },
+      { id: "unit-1-3", name: "Iseara Sipelga 1-3", status: "Available", designStage: "Design", packageName: "Not Selected" },
+      { id: "unit-1-5", name: "Iseara Sipelga 1-5", status: "Sold", designStage: "Design", packageName: "Classic and Neutral" },
     ],
   },
   "proj-tammeka": {
@@ -446,9 +446,9 @@ export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
 };
 
 export const unitDetails: Record<string, UnitDetail> = {
-  "unit-2-9": {
-    unitId: "unit-2-9",
-    clientName: "Liisi",
+  "unit-14-9": {
+    unitId: "unit-14-9",
+    clientName: "Sipelga 14-9",
     ownerName: "Mari Tamm",
     ownerEmail: "mari.tamm@example.com",
     ownerPhone: "+372 512 3457",
@@ -466,10 +466,10 @@ export const unitDetails: Record<string, UnitDetail> = {
         time: "Now",
       },
     ],
-    style: "Dark and Premium",
-    flooring: "Dark Oak",
-    bathroom: "Marble Black",
-    kitchen: "Dark Gray & Black",
+    style: "Light and Modern",
+    flooring: "Natural Oak",
+    bathroom: "Soft Beige",
+    kitchen: "Warm White",
     files: [
       { id: "file-1", title: "Floor Plan.pdf", date: "11.15.2024" },
       { id: "file-2", title: "Electrical Plan.pdf", date: "12.20.2024" },
@@ -485,10 +485,10 @@ export const unitDetails: Record<string, UnitDetail> = {
     ownerEmail: "mari.tamm@example.com",
     ownerPhone: "+372 512 3457",
     recentMessages: [],
-    style: "Light and Modern",
-    flooring: "Natural Oak",
-    bathroom: "Soft Beige",
-    kitchen: "Warm White",
+    style: "Dark and Premium",
+    flooring: "Dark Oak",
+    bathroom: "Marble Black",
+    kitchen: "Dark Gray & Black",
     files: [],
     quickUploads: ["Floor Plan", "Electrical", "Plumbing"],
     notes: "Awaiting final client selection.",
