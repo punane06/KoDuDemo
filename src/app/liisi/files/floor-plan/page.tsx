@@ -58,7 +58,7 @@ export default function LiisiFloorPlanPage() {
         variant="inner-viewer"
       />
 
-      <section className="flex w-full flex-1 flex-col">
+      <section className="relative w-full flex-1 flex-col">
         {/* Image and Zoom Controls - Unified Block */}
         <LiisiViewerSurface
           imageUrl={activeLayer.imageUrl}
@@ -69,7 +69,7 @@ export default function LiisiFloorPlanPage() {
           onResetZoom={handleResetZoom}
         />
 
-        <div className="mt-auto border-t border-[#3b3f42] px-4 pt-4 pb-6">
+        <div className="mt-auto border-t border-[#3b3f42] px-4 pt-4 pb-6 fixed bottom-0 left-0 w-full bg-[#202427]">
           <p className="text-[12px] uppercase tracking-[0.08em] text-[#a8b0b3]">Technical Layers</p>
 
           <div className="mt-3 grid grid-cols-3 gap-2">
@@ -80,7 +80,7 @@ export default function LiisiFloorPlanPage() {
                 onClick={() => setActiveLayerId(layer.id)}
                 aria-pressed={activeLayer.id === layer.id}
                 className={[
-                  "rounded-2xl border px-3 py-4 text-left",
+                  "rounded-2xl border px-3 py-2 text-left",
                   activeLayer.id === layer.id
                     ? "border-[#5a6268] bg-[#24282c]"
                     : "border-[#4d545a] bg-[#202427] hover:bg-[#24282c]",

@@ -1,6 +1,11 @@
+
+
 # KoDuDemo
 
-KoDuDemo is a product prototype built during the Garage48 Empowering Women Hackathon.
+Live demo: [https://kodu-demo.vercel.app/](https://kodu-demo.vercel.app/)
+
+**Unified home-buyer and developer experience for real estate projects.**
+KoDuDemo is a working prototype built at the Garage48 Empowering Women Hackathon, demonstrating a seamless, mobile-first customer journey and a developer dashboard for project management.
 
 Event:
 - Garage48 Empowering Women Hackathon
@@ -38,25 +43,27 @@ Deliver, within hackathon time, a functional prototype that demonstrates:
 Delivery target:
 - Demo-ready working prototype by March 22, 14:00
 
-## Current Scope (In Progress)
 
-Customer side, Liisi mobile views:
-- Home / apartment overview
-- Design package comparison + selection
-- Documents
-- Gallery
-- Progress status
-- Activity feed
+## Current Scope
 
-Developer side, Anu tablet views (design pending, implementation starts as input arrives):
-- Project dashboard overview
-- Customer progress snapshot
-- Design package and decision status
-- Documents and media management
-- Timeline / activity status
+**Customer side (Liisi, mobile-first):**
+- Home / apartment overview (implemented)
+- Design package comparison & selection (implemented)
+- Documents (implemented)
+- Gallery (implemented)
+- Progress status (implemented)
+- Activity feed / timeline (implemented)
 
-Data source:
-- Mock data only for hackathon speed
+**Developer side (Anu, tablet-first):**
+- Project dashboard overview (basic structure, WIP)
+- Customer progress snapshot (WIP)
+- Design package and decision status (WIP)
+- Documents and media management (WIP)
+- Timeline / activity status (WIP)
+
+**Data:**
+- Mock data only (see src/lib/mockData.ts)
+
 
 ## Tech Stack
 
@@ -95,11 +102,31 @@ http://localhost:3000
 Windows PowerShell note:
 - If script policy blocks npm/npx, use `npm.cmd` and `npx.cmd`.
 
+
 ## Project Structure
 
-- `src/app` - pages and app routing
-- `src/components` - UI components
-- `src/lib/mockData.ts` - hackathon mock data for apartment, packages, documents, and gallery
+- `src/app` — app routing and pages
+	- `liisi/` — customer (mobile) views: home, design, documents, gallery, timeline, chat
+	- `anu/` — developer (tablet) views: dashboard, project, unit
+- `src/components` — UI components
+	- `liisi/` — Liisi-specific components
+	- `anu/` — Anu-specific components
+	- `brand/` — shared branding (e.g. KoduLogo)
+	- `ui/` — shared UI primitives (button, card, badge, etc)
+- `src/lib/mockData.ts` — mock data for all flows
+## Design System & Icons
+
+- All colors, typography, and spacing are defined in `src/components/liisi/liisi-design-system.ts` and `src/components/anu/anu-design-system.ts`.
+- Use semantic color tokens (e.g. `liisiColors.lightGrey`) for consistency.
+- Icons: Lucide icons, custom SVG/PNG in `/public` (e.g. IconInterior, IconStar, progress-arc.svg).
+## Testing
+
+- Tests are colocated as `.test.tsx` files next to their components/pages.
+- Run all tests:
+
+```bash
+npm test
+```
 
 ## Deployment
 
@@ -119,11 +146,9 @@ Liisi view (work in progress):
 
 ![Liisi mobile view WIP](docs/images/liisi-wip.png)
 
-## What To Add Next In README
 
-Add these details as they become available:
-- short product pitch (1 to 2 sentences)
-- screenshots or GIF from working prototype
-- live demo URL (Vercel)
-- API notes (if backend integration starts)
-- known limitations and next milestones
+## Next Steps
+
+- Add screenshots or GIFs from the working prototype
+- Document API/backend integration if started
+- List known limitations and next milestones
