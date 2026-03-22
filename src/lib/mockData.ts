@@ -387,8 +387,9 @@ export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
       { id: "stage-6", label: "Complete", done: false },
     ],
     photoUrls: [
-      "https://picsum.photos/320/220?random=221",
-      "https://picsum.photos/320/220?random=222",
+      "/images/1Anu.png",
+      "/images/2Anu.png",
+      "/images/3Anu.png",
     ],
     units: [
       { id: "unit-14-9", name: "Iseara Sipelga 14-9", status: "Sold", designStage: "Not selected", packageName: "Light and Modern", progressPercent: 58 },
@@ -413,8 +414,9 @@ export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
       { id: "stage-6", label: "Complete", done: false },
     ],
     photoUrls: [
-      "https://picsum.photos/320/220?random=223",
-      "https://picsum.photos/320/220?random=224",
+      "/images/1Anu.png",
+      "/images/2Anu.png",
+      "/images/3Anu.png",
     ],
     units: [
       { id: "unit-t-1", name: "Tammekalda Residence 1-4", status: "Sold", designStage: "Finishing", packageName: "Balanced" },
@@ -435,8 +437,9 @@ export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
       { id: "stage-6", label: "Complete", done: false },
     ],
     photoUrls: [
-      "https://picsum.photos/320/220?random=225",
-      "https://picsum.photos/320/220?random=226",
+      "/images/1Anu.png",
+      "/images/2Anu.png",
+      "/images/3Anu.png",
     ],
     units: [
       { id: "unit-r-1", name: "River Park Homes 1-1", status: "Available", designStage: "Planning", packageName: "Not Selected" },

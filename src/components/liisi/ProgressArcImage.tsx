@@ -8,7 +8,7 @@ export function ProgressArcImage({ percent }: ProgressArcImageProps) {
   return (
     <div className="flex justify-center my-1">
       <Image
-        src="/progress-arc.svg"
+        src="images/ProgressBar.svg"
         alt={percent ? `${percent}% complete` : "Construction progress arc"}
         width={295}
         height={184}
