@@ -76,14 +76,15 @@ export default function LiisiPage() {
         {/* Floor Plan */}
         <div className="">
           <h2 className="font-inter font-normal text-[15px] text-[#223F43] mb-2">Floor Plan</h2>
-
-          <Image
-            src="images/2.svg"
-            alt="Floor plan"
-            width={600}
-            height={280}
-            className="h-44 w-full object-cover"
-          />
+          <a href="/liisi/files/floor-plan">
+            <Image
+              src="images/2.svg"
+              alt="Floor plan"
+              width={600}
+              height={280}
+              className="h-44 w-full object-cover cursor-pointer hover:opacity-90 transition"
+            />
+          </a>
         </div>
 
         {/* Interior Design Options CTA */}
