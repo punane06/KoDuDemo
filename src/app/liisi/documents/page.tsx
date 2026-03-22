@@ -39,7 +39,7 @@ export default function LiisiDocumentsPage() {
         }
       />
 
-      <section className={`mx-auto w-full ${liisiLayout.containerWidth} px-4 py-4 sm:px-6`}>
+      <section className={`mx-auto w-full ${liisiLayout.containerWidth} ${liisiLayout.pageMargin} py-4`}>
         <div className="space-y-3">
           {documents.map((doc) => (
             <article key={doc.id} className={`${liisiSurface.cardCompact} px-4 py-3`}>

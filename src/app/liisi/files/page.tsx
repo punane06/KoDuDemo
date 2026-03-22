@@ -51,7 +51,7 @@ export default function LiisiFilesPage() {
     <main className={liisiSurface.pageBackground}>
       <LiisiHeader title="Technical Files" subtitle="Plans & drawings" backHref="/liisi" variant="inner" />
 
-      <section className={`mx-auto w-full ${liisiLayout.containerWidth} px-4 py-4 sm:px-6`}>
+      <section className={`mx-auto w-full ${liisiLayout.containerWidth} ${liisiLayout.pageMargin} py-4`}>
         <div className="space-y-3">
           {technicalFiles.map((file) => (
             <article key={file.id} className={`${liisiSurface.cardCompact} px-4 py-3`}>

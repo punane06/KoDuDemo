@@ -6,7 +6,7 @@ export default function LiisiChatPage() {
     <main className={liisiSurface.pageBackground}>
       <LiisiHeader title="Chat" subtitle="Conversation with KoDu support" backHref="/liisi" variant="inner" />
 
-      <section className={`mx-auto w-full ${liisiLayout.containerWidth} px-4 py-4 sm:px-6`}>
+      <section className={`mx-auto w-full ${liisiLayout.containerWidth} ${liisiLayout.pageMargin} py-4`}>
         <div className={`${liisiSurface.card} p-4`}>
           <p className={liisiText.bodyPlus}>Start a conversation</p>
           <p className={`mt-1 ${liisiText.captionMuted}`}>
