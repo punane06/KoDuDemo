@@ -4,6 +4,8 @@ import LiisiDesignPage from "./page";
 
 describe("Liisi Design Page", () => {
   it("renders interior design options page", () => {
+    localStorage.clear();
+
     render(<LiisiDesignPage />);
 
     // Verify page title
@@ -26,6 +28,7 @@ describe("Liisi Design Page", () => {
     expect(screen.getByText(/Dark & Premium/i)).toBeInTheDocument();
     expect(screen.getByText(/Classic & Neutral/i)).toBeInTheDocument();
     expect(screen.getByText(/Nordic Warmth/i)).toBeInTheDocument();
+    expect(screen.getByText(/Deadline May 12/i)).toBeInTheDocument();
 
     // Verify custom selection CTA
     expect(screen.getByText(/Custom Selection/i)).toBeInTheDocument();
@@ -35,10 +38,21 @@ describe("Liisi Design Page", () => {
   });
 
   it("renders back button to home", () => {
+    localStorage.clear();
+
     render(<LiisiDesignPage />);
 
     const backButton = screen.getByLabelText(/Back to home/i);
     expect(backButton).toBeInTheDocument();
     expect(screen.getByLabelText(/Start chat/i)).toBeInTheDocument();
+  });
+
+  it("shows review links in overview and keeps selection controls out of package grid", () => {
+    localStorage.clear();
+
+    render(<LiisiDesignPage />);
+
+    expect(screen.getAllByText(/View details/i).length).toBeGreaterThan(0);
+    expect(screen.queryByRole("button", { name: /Select package/i })).not.toBeInTheDocument();
   });
 });

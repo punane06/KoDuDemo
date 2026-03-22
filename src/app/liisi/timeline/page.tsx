@@ -96,7 +96,7 @@ export default function LiisiTimelinePage() {
         variant="inner"
       />
 
-      <section className={`mx-auto w-full ${liisiLayout.containerWidth} ${liisiLayout.pageMargin} py-4`}>
+      <section className={`mx-auto w-full ${liisiLayout.containerWidth} ${liisiLayout.pageMargin} pt-4 ${liisiLayout.contentBottomPadding}`}>
         <div className="relative pl-14">
           <div className="absolute bottom-8 left-5 top-3 w-px bg-[#d4d4d4]" />
 
