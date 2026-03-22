@@ -339,7 +339,7 @@ export const activityFeed = [
 export const developerProjects: DeveloperProject[] = [
   {
     id: "proj-iseara-lutsu",
-    name: "Iseara Lutsu",
+    name: "Sipelga Residence",
     unitCount: 24,
     currentStage: "Interior Works",
     progressPercent: 58,

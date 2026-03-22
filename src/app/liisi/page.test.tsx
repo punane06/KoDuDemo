@@ -10,9 +10,9 @@ describe("Liisi Home Page", () => {
     expect(screen.getByText(/Tere Liis/i)).toBeInTheDocument();
 
     // Verify apartment identifier (unit name from mockData)
-    expect(screen.getByText(/Iseara Lutsu/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sipelga Residence/i)).toBeInTheDocument();
 
-    // Verify construction progress section exists
+    // Verify construction progress section exist
     expect(
       screen.getByText(/Construction Progress/i)
     ).toBeInTheDocument();
