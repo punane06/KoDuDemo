@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import type { ConstructionStage } from "@/lib/mockData";
 import { liisiText, liisiColors, liisiState } from "@/components/liisi/liisi-design-system";
@@ -15,9 +16,10 @@ interface Props {
   stages: ConstructionStage[];
   progressPercent: number;
   estimatedCompletion: string;
+  timelineHref?: string;
 }
 
-export function ConstructionProgressCard({ stages, progressPercent, estimatedCompletion }: Props) {
+export function ConstructionProgressCard({ stages, progressPercent, estimatedCompletion, timelineHref }: Props) {
   const progressLen = ARC_LEN * (progressPercent / 100);
   const progressGap = CIRC - progressLen;
   const currentStage = stages.find((s) => s.current);
@@ -144,6 +146,14 @@ export function ConstructionProgressCard({ stages, progressPercent, estimatedCom
           <p className="text-xs text-muted-foreground">
             Estimated completion {estimatedCompletion}
           </p>
+
+          {timelineHref ? (
+            <p className="pt-1">
+              <Link href={timelineHref} className="text-xs font-medium text-[#223F43] underline-offset-2 hover:underline">
+                View full timeline
+              </Link>
+            </p>
+          ) : null}
         </div>
       </CardContent>
     </Card>

@@ -27,6 +27,7 @@ export default function LiisiPage() {
           stages={liisiConstructionStages}
           progressPercent={apartment.progressPercent}
           estimatedCompletion={apartment.completionDate}
+          timelineHref="/liisi/timeline"
         />
 
         {/* ── Latest update ──────────────────────────── */}
