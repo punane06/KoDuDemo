@@ -145,7 +145,7 @@ export const liisiConstructionStages: ConstructionStage[] = [
 export const liisiLatestUpdate = {
   date: "Mar 18",
   category: "Interior Works",
-  imageUrl: "https://picsum.photos/600/300?random=201",
+  imageUrl: "/images/1.jpg",
   text: "We have completed painting your feature wall in the living room. The soft beige tone creates a warm and elegant atmosphere.",
   totalCount: 4,
 };
@@ -158,7 +158,7 @@ export const liisiProgressGallery: ProgressGalleryPhoto[] = [
     date: "Mar 18",
     description:
       "We have completed painting your feature wall in the living room. The soft beige tone creates a warm and elegant atmosphere.",
-    url: "https://picsum.photos/seed/kodu-progress-001/900/1400",
+    url: "/images/Feature-wall-painting-completed.jpg",
   },
   {
     id: "progress-002",
@@ -167,7 +167,7 @@ export const liisiProgressGallery: ProgressGalleryPhoto[] = [
     date: "Mar 16",
     description:
       "Kitchen base units are installed and countertop templating has been completed for final fitting.",
-    url: "https://picsum.photos/seed/kodu-progress-002/900/1400",
+    url: "/images/Kitchen-installation-in-progress.jpg",
   },
   {
     id: "progress-003",
@@ -176,7 +176,7 @@ export const liisiProgressGallery: ProgressGalleryPhoto[] = [
     date: "Mar 14",
     description:
       "Bathroom wall and floor tiles are now complete. Grouting and fixture installation are next.",
-    url: "https://picsum.photos/seed/kodu-progress-003/900/1400",
+    url: "/images/Bathroom-tiling-completed.jpg",
   },
   {
     id: "progress-004",
@@ -185,7 +185,7 @@ export const liisiProgressGallery: ProgressGalleryPhoto[] = [
     date: "Mar 12",
     description:
       "Switches, sockets and lighting points are being finalized across all completed interior zones.",
-    url: "https://picsum.photos/seed/kodu-progress-004/900/1400",
+    url: "/images/Electrical-finalization-stage.jpg",
   },
 ];
 
@@ -391,12 +391,12 @@ export const developerProjectDetails: Record<string, DeveloperProjectDetail> = {
       "https://picsum.photos/320/220?random=222",
     ],
     units: [
-      { id: "unit-14-9", name: "Iseara Sipelga 14-9", status: "Sold", designStage: "Design", packageName: "Light and Modern", progressPercent: 58 },
-      { id: "unit-2-12", name: "Iseara Sipelga 2-12", status: "Sold", designStage: "Design", packageName: "Dark and Premium" },
-      { id: "unit-3-5", name: "Iseara Sipelga 3-5", status: "Reserved", designStage: "Design", packageName: "Custom", progressPercent: 75 },
-      { id: "unit-4-8", name: "Iseara Sipelga 4-8", status: "Sold", designStage: "Design", packageName: "Custom" },
-      { id: "unit-1-3", name: "Iseara Sipelga 1-3", status: "Available", designStage: "Design", packageName: "Not Selected" },
-      { id: "unit-1-5", name: "Iseara Sipelga 1-5", status: "Sold", designStage: "Design", packageName: "Classic and Neutral" },
+      { id: "unit-14-9", name: "Iseara Sipelga 14-9", status: "Sold", designStage: "Not selected", packageName: "Light and Modern", progressPercent: 58 },
+      { id: "unit-2-12", name: "Iseara Sipelga 2-12", status: "Sold", designStage: "Selected", packageName: "Dark and Premium" },
+      { id: "unit-3-5", name: "Iseara Sipelga 3-5", status: "Reserved", designStage: "Selected", packageName: "Custom", progressPercent: 75 },
+      { id: "unit-4-8", name: "Iseara Sipelga 4-8", status: "Sold", designStage: "Not selected", packageName: "Custom" },
+      { id: "unit-1-3", name: "Iseara Sipelga 1-3", status: "Available", designStage: "Selected", packageName: "Not Selected" },
+      { id: "unit-1-5", name: "Iseara Sipelga 1-5", status: "Sold", designStage: "Not selected", packageName: "Classic and Neutral" },
     ],
   },
   "proj-tammeka": {

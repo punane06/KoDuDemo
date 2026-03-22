@@ -7,23 +7,24 @@ import { LiisiViewerSurface } from "@/components/liisi/liisi-viewer-surface";
 
 const technicalLayers = [
   {
+    id: "layer-switches",
+    title: "Floor Plan",
+    subtitle: "Light Controls",
+    imageUrl: "/images/2.svg",
+  },
+  {
     id: "layer-electrical",
     title: "Electrical",
     subtitle: "Outlets & Wiring",
-    imageUrl: "https://picsum.photos/seed/kodu-floorplan-electrical/900/560",
+    imageUrl: "/images/elektriplaan-01-02.svg",
   },
   {
     id: "layer-water",
     title: "Water",
     subtitle: "Plumbing",
-    imageUrl: "https://picsum.photos/seed/kodu-floorplan-water/900/560",
+    imageUrl: "/images/waterplan-03.svg",
   },
-  {
-    id: "layer-switches",
-    title: "Switches",
-    subtitle: "Light Controls",
-    imageUrl: "https://picsum.photos/seed/kodu-floorplan-switches/900/560",
-  },
+  
 ] as const;
 
 export default function LiisiFloorPlanPage() {

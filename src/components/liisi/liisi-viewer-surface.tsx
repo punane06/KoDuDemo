@@ -38,7 +38,7 @@ export function LiisiViewerSurface({
               alt={imageAlt}
               fill
               sizes="(max-width: 640px) 100vw, 420px"
-              className="object-cover"
+              className="object-cover bg-white"
               priority
             />
           </div>
