@@ -29,26 +29,26 @@ const packageVisuals: Record<
   "pkg-essential": {
     label: "Package A",
     title: "Light & Modern",
-    imageUrl: "https://picsum.photos/600/420?random=451",
+    imageUrl: "/images/Light&modern.jpg",
     tags: ["Oak flooring", "White quartz"],
     href: "/liisi/design/light-modern",
   },
   "pkg-balanced": {
     label: "Package B",
     title: "Dark & Premium",
-    imageUrl: "https://picsum.photos/600/420?random=452",
+    imageUrl: "/images/Dark&premium.jpg",
     tags: ["Walnut flooring", "Black granite"],
   },
   "pkg-signature": {
     label: "Package C",
     title: "Classic & Neutral",
-    imageUrl: "https://picsum.photos/600/420?random=453",
+    imageUrl: "/images/Classic&neutral.jpg",
     tags: ["Ash flooring", "Beige marble"],
   },
   "pkg-bespoke": {
     label: "Package D",
     title: "Nordic Warmth",
-    imageUrl: "https://picsum.photos/600/420?random=454",
+    imageUrl: "/images/NordicWarmth.jpg",
     tags: ["Pine flooring", "Warm stone"],
   },
 };

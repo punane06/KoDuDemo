@@ -39,7 +39,7 @@ const packageSections: DetailSection[] = [
         subtitle: "Natural engineered oak flooring",
         description: "Kahrs Life Whole Grain",
         chip: "Whole Grain finish, 4 planks, matte, dimensions 118 x 1225 mm",
-        imageUrl: "https://picsum.photos/seed/kodu-design-parquet/140/140",
+        imageUrl: "/images/2-Flooring.jpg",
       },
     ],
   },
@@ -65,7 +65,7 @@ const packageSections: DetailSection[] = [
         title: "Skirting Boards",
         description: "Natural lacquered oak skirting in Cream tone, 5.8 cm height",
         chip: "Cream finish",
-        imageUrl: "https://picsum.photos/seed/kodu-design-skirting/140/140",
+        imageUrl: "/images/3-skirting boards.jpg",
       },
     ],
   },
@@ -85,7 +85,7 @@ const packageSections: DetailSection[] = [
         title: "Wall Finish (Entire Apartment)",
         description: "White painted walls RAL 9010",
         chip: "RAL9010 White",
-        imageUrl: "https://picsum.photos/seed/kodu-design-wall-finish/140/140",
+        imageUrl: "/images/4-WallFinish.jpg",
       },
     ],
   },
@@ -99,28 +99,28 @@ const packageSections: DetailSection[] = [
         title: "Wall Tiles",
         description: "Matt ceramic tiles Pursue Greige 60×60 cm",
         chip: "Matt finish",
-        imageUrl: "https://picsum.photos/seed/kodu-design-wall-tile/140/140",
+        imageUrl: "/images/5-wall-tiles.jpg",
       },
       {
         id: "decorative-tiles",
         title: "Decorative Tiles",
         description: "Rebels Moss 5 × 15 cm",
         chip: "Matt finish",
-        imageUrl: "https://picsum.photos/seed/kodu-design-decor-tile/140/140",
+        imageUrl: "/images/6-pursue-green-brillo-30x60-1.jpg",
       },
       {
         id: "floor-tiles",
         title: "Floor Tiles",
         description: "Matt ceramic tiles Pursue Greige 60×60 cm",
         chip: "Matt finish",
-        imageUrl: "https://picsum.photos/seed/kodu-design-floor-tile/140/140",
+        imageUrl: "/images/7-floor-tiles.jpg",
       },
       {
         id: "sink-faucet",
         title: "Sink Faucet",
         description: "Grohe Essence M brushed graphite finish faucet",
         chip: "Brushed Hard Graphite",
-        imageUrl: "https://picsum.photos/seed/kodu-design-faucet/140/140",
+        imageUrl: "/images/8-sink-faucet.jpg",
       },
       {
         id: "shower-set",
@@ -214,7 +214,7 @@ export function InteriorDesignPackageDetail() {
 
       <div className="relative h-[168px] w-full overflow-hidden">
         <Image
-          src="https://picsum.photos/seed/kodu-design-light-modern-hero/900/560"
+          src="/images/Light&modern.jpg"
           alt="Light & Modern interior hero"
           fill
           sizes="100vw"
