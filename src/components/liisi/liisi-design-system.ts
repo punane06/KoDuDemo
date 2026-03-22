@@ -61,6 +61,7 @@ export const liisiText = {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const liisiColors = {
+    lightGrey: "#FAFAF8",    // Light grey (system background)
   // Brand
   primary: "#223F43",      // Teal (dark headers, current state)
   accent: "#FACC58",       // Yellow (progress, highlights)

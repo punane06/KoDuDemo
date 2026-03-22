@@ -122,8 +122,8 @@ export type ConstructionUpdate = {
 
 export const apartment: Apartment = {
   id: "apt-001",
-  title: "Iseara Lutsu 2-9",
-  address: "Iseara Lutsu 2-9",
+  title: "Sipelga 14",
+  address: "Sipelga 14",
   sizeM2: 74,
   rooms: 3,
   floor: 5,
@@ -339,7 +339,7 @@ export const activityFeed = [
 export const developerProjects: DeveloperProject[] = [
   {
     id: "proj-iseara-lutsu",
-    name: "Iseara Lutsu",
+    name: "Sipelga Residence",
     unitCount: 24,
     currentStage: "Interior Works",
     progressPercent: 58,
